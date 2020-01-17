@@ -1,0 +1,77 @@
+from django.db import models
+
+class GDPTable(models.Model) : 
+    object = models.Manager()
+
+    no      = models.AutoField(primary_key=True) 
+    # 나라 이름 50줄 초과 -> 300으로 set up  
+    CountryName = models.CharField(max_length=300)
+    # 1960s
+    gdp_1960 = models.FloatField(default=0.0, null=True)
+    gdp_1961 = models.FloatField(default=0.0, null=True)
+    gdp_1962 = models.FloatField(default=0.0, null=True)
+    gdp_1963 = models.FloatField(default=0.0, null=True)
+    gdp_1964 = models.FloatField(default=0.0, null=True)
+    gdp_1965 = models.FloatField(default=0.0, null=True)
+    gdp_1966 = models.FloatField(default=0.0, null=True)
+    gdp_1967 = models.FloatField(default=0.0, null=True)
+    gdp_1968 = models.FloatField(default=0.0, null=True)
+    gdp_1969 = models.FloatField(default=0.0, null=True)
+    # 1970s
+    gdp_1970 = models.FloatField(default=0.0, null=True)
+    gdp_1971 = models.FloatField(default=0.0, null=True)
+    gdp_1972 = models.FloatField(default=0.0, null=True)
+    gdp_1973 = models.FloatField(default=0.0, null=True)
+    gdp_1974 = models.FloatField(default=0.0, null=True)
+    gdp_1975 = models.FloatField(default=0.0, null=True)
+    gdp_1976 = models.FloatField(default=0.0, null=True)
+    gdp_1977 = models.FloatField(default=0.0, null=True)
+    gdp_1978 = models.FloatField(default=0.0, null=True)
+    gdp_1979 = models.FloatField(default=0.0, null=True)
+    # 1980s
+    gdp_1980 = models.FloatField(default=0.0, null=True)
+    gdp_1981 = models.FloatField(default=0.0, null=True)
+    gdp_1982 = models.FloatField(default=0.0, null=True)
+    gdp_1983 = models.FloatField(default=0.0, null=True)
+    gdp_1984 = models.FloatField(default=0.0, null=True)
+    gdp_1985 = models.FloatField(default=0.0, null=True)
+    gdp_1986 = models.FloatField(default=0.0, null=True)
+    gdp_1987 = models.FloatField(default=0.0, null=True)
+    gdp_1988 = models.FloatField(default=0.0, null=True)
+    gdp_1989 = models.FloatField(default=0.0, null=True)
+    # 1990s
+    gdp_1990 = models.FloatField(default=0.0, null=True)
+    gdp_1991 = models.FloatField(default=0.0, null=True)
+    gdp_1992 = models.FloatField(default=0.0, null=True)
+    gdp_1993 = models.FloatField(default=0.0, null=True)
+    gdp_1994 = models.FloatField(default=0.0, null=True)
+    gdp_1995 = models.FloatField(default=0.0, null=True)
+    gdp_1996 = models.FloatField(default=0.0, null=True)
+    gdp_1997 = models.FloatField(default=0.0, null=True)
+    gdp_1998 = models.FloatField(default=0.0, null=True)
+    gdp_1999 = models.FloatField(default=0.0, null=True)
+    # 2000s
+    gdp_2000 = models.FloatField(default=0.0, null=True)
+    gdp_2001 = models.FloatField(default=0.0, null=True)
+    gdp_2002 = models.FloatField(default=0.0, null=True)
+    gdp_2003 = models.FloatField(default=0.0, null=True)
+    gdp_2004 = models.FloatField(default=0.0, null=True)
+    gdp_2005 = models.FloatField(default=0.0, null=True)
+    gdp_2006 = models.FloatField(default=0.0, null=True)
+    gdp_2007 = models.FloatField(default=0.0, null=True)
+    gdp_2008 = models.FloatField(default=0.0, null=True)
+    gdp_2009 = models.FloatField(default=0.0, null=True)
+    
+    # 2010s
+    gdp_2010 = models.FloatField(default=0.0, null=True)
+    gdp_2011 = models.FloatField(default=0.0, null=True)
+    gdp_2012 = models.FloatField(default=0.0, null=True)
+    gdp_2013 = models.FloatField(default=0.0, null=True)
+    gdp_2014 = models.FloatField(default=0.0, null=True)
+    gdp_2015 = models.FloatField(default=0.0, null=True)
+    gdp_2016 = models.FloatField(default=0.0, null=True)
+    gdp_2017 = models.FloatField(default=0.0, null=True)
+    gdp_2018 = models.FloatField(default=0.0, null=True)
+
+    # 2019s = None
+    gdp_2019 = models.FloatField(default=0.0, null=True)
