@@ -11,23 +11,21 @@
 
 <body>
     <div class="container-md pt-5">
-        {% if not request.user.is_authenticated %}
-        <p><a href="/member/sign_in"  class="btn btn-dark"> 로그인 - SignIn </a></p>
-        <p><a href="/member/sign_up"  class="btn btn-dark" > 회원가입 - SignUp </a></p>
+        {% csrf_token%}
+        <!-- {% if request.user.is_authenticated %} -->
+        <p>반갑습니다. {{request.user.naem}} 님</p>
 
-        {% else %}
-
-        <p> 반갑습니다. {{request.user.name}}님</p>
         <hr />
         아이디 정보 : {{request.user.username}} <br/>
         이름 정보   : {{request.user.name}} <br/>
         이메일 정보 : {{request.user.email}} <br/>
         <hr />
+
+        <p><a href="/member/user_edit"> 정보 수정 </a></p>
+        <p><a href="/member/user_edit_check"> 패스워드 변경 </a></p>
+        <p><a href="/member/sign_out"> 로그 아웃  </a></p>
         
-        <p><a href="/member/user_mypage"> 마이페이지 </a></p>
-        <p><a href="/member/sign_out"> 로그아웃 </a></p>
-        
-        {% endif %}
+        <!-- {% endif %} -->
     </div>
 </body>
 </html>

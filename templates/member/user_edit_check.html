@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- head.html -->
+{% include "../main/head.html" %}
+<!-- <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>sigh_in</title>
+</head> -->
+
+<body>
+    <div class="container-md pt-5">
+        <div class="pt-3">
+            <form action="/member/user_edit_check" method="post">
+            {% csrf_token%}
+            
+            <p>
+            아이디   : <input type="text" name="username" value="{{user_check.username}}"readonly/>
+            패스워드 : <input type="password" name="password"/>
+            </p>
+            <input type="submit" class="bn btn-dark" href="/member/user_edit_pw" value="이동">
+            <input type="hidden" name= next value="{{next}}"> 
+            </form>  
+        </div> 
+    </div>
+</body>
+</html>

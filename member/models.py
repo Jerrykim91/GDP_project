@@ -1,11 +1,19 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, UserManager
 
 # 멤버 =>  auth에서  
 class LIST(AbstractUser):
-    userid = models.CharField(max_length=200, null=True)
-    birth = models.IntegerField(null=True)
-    
+    # objects  = models.Manager()
+    # 모델을 가지고 온게 아니라 모델을 커스텀해서
+    objects  = UserManager() 
+
+    birth_date = models.DateField( null=True , blank= True)
+    name  = models.CharField( '성명', max_length=30, blank=True ) # 본명
+
+    # USERNAME_FIELD = ' '
+    REQUIRED_FIELDS = ['email']
+
+
 
 # 정리 
 # 1. memeber app 설치

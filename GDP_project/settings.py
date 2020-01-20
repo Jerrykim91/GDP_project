@@ -31,14 +31,17 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+
+    'member',
+    # test
+    'service',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'member',
-    'service'
+
 ]
 
 MIDDLEWARE = [
@@ -115,10 +118,11 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
-
+# 옵션 추가 
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'OPTION': {'user_attributes': ('username', 'name')},
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
@@ -152,4 +156,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
+# 만든 모델을 명시
 AUTH_USER_MODEL="member.LIST"
+# 인증 확인 실패시 리다이렉트할 경로
+LOGIN_URL = '/sign_in/'
