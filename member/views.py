@@ -19,7 +19,7 @@ User = get_user_model()
 
 
 
-def user_edit_pw(request): # 해결이안됨
+def user_edit_pw(request): # 해결
     if request.method =='GET':
         if not request.user.is_authenticated:
             return redirect(request, 'user_edit_pw')
@@ -37,7 +37,7 @@ def user_edit_pw(request): # 해결이안됨
         if user_edit_pw:
             user_edit_pw.set_password(new_pw) # new_pw으로 암호 변경 
             user_edit_pw.save()
-            return redirect('member/main')
+            return redirect('/member/main')
 
         return redirect('member/user_edit_pw')
 

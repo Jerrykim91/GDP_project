@@ -15,8 +15,8 @@
         {% csrf_token %}
         <p> 아이디   : <input type="text" name="username" value="{{user_check.username}}" readonly /><br/></p>
         <p> 기존암호  : <input type="password" name="pw"  /><br/> </p>
-        <p> 바꿀암호  : <input type="password" name="pw"  /><br/> </p>
-        <p> 재암호입력: <input type="password" name="pw"  /><br/> </p>
+        <p> 바꿀암호  : <input type="password" name="new_pw"  /><br/> </p>
+        <p> 재암호입력: <input type="password" name="new_pw"  /><br/> </p>
 
         <p><input type="button" value="뒤로가기" onclick="history.back();" />
             <input type="submit" class="bn btn-dark" value="변경"></p>
