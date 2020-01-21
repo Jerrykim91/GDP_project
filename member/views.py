@@ -19,13 +19,7 @@ from django.views.decorators.csrf import csrf_exempt
 User = get_user_model()
 
 
-# Create your views here.W
-
-
-
-
-
-
+# Create your views here.
 
 def user_edit_pw(request): 
     if request.method =='GET':
