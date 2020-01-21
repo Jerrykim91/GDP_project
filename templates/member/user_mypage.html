@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- head.html -->
-{% include "../main/head.html" %}
-<!-- <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>sigh_in</title>
-</head> -->
+</head>
 
 <body>
     <div class="container-md pt-5">
         {% csrf_token%}
         <!-- {% if request.user.is_authenticated %} -->
-        <p>반갑습니다. {{request.user.naem}} 님</p>
+        <p>반갑습니다. {{request.user.name}} 님</p>
 
         <hr />
         아이디 정보 : {{request.user.username}} <br/>

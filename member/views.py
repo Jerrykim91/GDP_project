@@ -1,25 +1,33 @@
 
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate as auth
 from django.contrib.auth import login as login
 from django.contrib.auth import logout as logout
 
+# 유효성 검사
+#from django.contrib.auth.forms import PasswordChangeForm
+#from django.contrib.auth import update_session_auth_hash
+
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
+
 
 # 변수 선언
 User = get_user_model()
 
 
-# Create your views here.
+# Create your views here.W
 
 
 
 
-def user_edit_pw(request): # 해결
+
+
+
+def user_edit_pw(request): 
     if request.method =='GET':
         if not request.user.is_authenticated:
             return redirect(request, 'user_edit_pw')
@@ -41,25 +49,65 @@ def user_edit_pw(request): # 해결
 
         return redirect('member/user_edit_pw')
 
+error_1 = '''
+<a href="/member/main"  type="button"> 메인으로 </a></p>
+<h1> 실패 다시 시도해주세요.</h1>
+<p><a href="/member/sign_up"  type="button"> 회원가입 </a>
+<a href="/member/sign_in" type="button"> 로그인 </a>
+'''
 
+
+# @login_required
+# @csrf_exempt
+# # user_edit_check - 정보 수정(원본)
+# def user_edit_check(request):
+#     if request.method == 'GET': 
+#         # if not request.user.is_authenticated:
+#         #     return redirect(request, 'user_edit_check')
+
+#         user_check = User.objects.get( username = request.user )
+#         return render(request,'member/user_edit_check.html',{'user_check':user_check})
+
+#     elif request.method == 'POST':
+#         id = request.POST['username']
+#         pw = request.POST['password']
+
+#         # 디비 인증
+#         user = auth( request, username=id, password=pw )
+#         if user is not None:
+#             # 세션 추가 
+#             login(request, user)
+#             # 성공 _ 리다이렉트 
+#             return redirect('/member/user_edit_pw')
+#         else:
+#             # 실패_  =>  get이 할일 
+#             # 사용자 정보 유지 
+#             user_check = User.objects.get( username = request.user )
+#             Check_Method = True
+#             return render(request,'member/user_edit_check.html',{'user_check':user_check,'Check_Method':Check_Method})
+             
 
 
 @login_required
 @csrf_exempt
-# user_edit - 정보 수정
+# user_edit_check - 정보 수정
 def user_edit_check(request):
-    if request.method == 'GET': 
-        if not request.user.is_authenticated:
-            return redirect(request, 'user_edit_check')
-
+    if request.method == 'GET':  
+        check = request.session.get('Check_Method', None)
+        print('check===', check)
+        # Check_Method = request.session['Check_Method']
         user_check = User.objects.get( username = request.user )
-        return render(request,'member/user_edit_check.html',{'user_check':user_check})
+        if check : 
+            # return render(request,'member/user_edit_check.html')
+            return render(request,'member/user_edit_check.html',{'user_check':user_check})
+        else : 
+            # Check_Method = request.session['Check_Method']
+            return render(request,'member/user_edit_check.html',{'user_check':user_check, 'Check_Method':1})
 
     elif request.method == 'POST':
-        id = request.POST['username']
+        id = request.POST['username'] 
         pw = request.POST['password']
 
-        # 디비 인증
         user = auth( request, username=id, password=pw )
         if user is not None:
             # 세션 추가 
@@ -67,10 +115,10 @@ def user_edit_check(request):
             # 성공 _ 리다이렉트 
             return redirect('/member/user_edit_pw')
         else:
-            # 실패_ 에러 메시지 전송 
-            return render(request,'member/user_edit_check.html')
-    else:
-        return render(request,'user_edit_check.html')
+            # 여기 정보를 get으로 보내야해 
+            request.session['Check_Method'] = 1
+            return redirect('/member/user_edit_check')
+        
 
 
 @login_required
@@ -121,6 +169,13 @@ def user_mypage(request):
 #     if request.method == 'GET':
 #         return render( request,'member/user_main.html')
 
+error = '''
+<a href="/member/main"  type="button"> 메인으로 </a></p>
+<h1>로그인 실패 다시 시도해주세요.</h1>
+<p><a href="/member/sign_up"  type="button"> 회원가입 </a>
+<a href="/member/sign_in" type="button"> 로그인 </a>
+'''
+
 
 # sign_in - 로그인
 @csrf_exempt
@@ -140,10 +195,10 @@ def sign_in(request):
             # 성공 _ 리다이렉트 
             return redirect('/member/main')
         else:
-            # 실패_ 에러 메시지 전송 
-            return render(request,'member/sign_in.html', {'error':"username or password is incorrect!"})
-    else:
-        return render(request,'sign_in.html')
+            # 실패_ 에러 메시지 전송  {'error':"username or password is incorrect!"}
+            return HttpResponse(error)
+
+
 
 # sign_up - 회원 가입 
 @csrf_exempt
