@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Search Country and Year</title>
+</head>
+<body>
+    <form action ="/service/search_show" method ="post">
+        <h4>나라명과 년도 검색하세요 </h4>
+        <td><input type ="text" name ="country_name"/></td>
+        <td><input type ="text" name ="year"/></td> 
+        <input type ="submit" value = "검색"/> 
+    </form>
+    <hr> <hr>
+    <form action ="/service/sort_by_year" method ="post">
+        <h4>년도 검색하세요 </h4>
+        <td><input type ="text" name ="year"/></td>    
+        <h4>몇 개년? </h4>
+        <td><input type ="text" name ="how_many"/></td> 
+        <input type ="submit" value = "Top Country 검색"/> 
+    </form>
+    <hr> <hr>
+    <h4> 나라별 GDP 상승세 </h4>
+    <a href="/service/search_country" class="form-control" style="margin-bottom: 5px;" > search_country</a>  
+</body>
+</html>

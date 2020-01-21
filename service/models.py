@@ -75,3 +75,79 @@ class GDPTable(models.Model) :
 
     # 2019s = None
     gdp_2019 = models.FloatField(default=0.0, null=True)
+
+
+class PopulationTable(models.Model) : 
+    objects = models.Manager()
+
+    no          = models.AutoField(primary_key=True) 
+    CountryName = models.CharField(max_length=300)
+    # 1960s
+    population_1960 = models.FloatField(default=0.0, null=True)
+    population_1961 = models.FloatField(default=0.0, null=True)
+    population_1962 = models.FloatField(default=0.0, null=True)
+    population_1963 = models.FloatField(default=0.0, null=True)
+    population_1964 = models.FloatField(default=0.0, null=True)
+    population_1965 = models.FloatField(default=0.0, null=True)
+    population_1966 = models.FloatField(default=0.0, null=True)
+    population_1967 = models.FloatField(default=0.0, null=True)
+    population_1968 = models.FloatField(default=0.0, null=True)
+    population_1969 = models.FloatField(default=0.0, null=True)
+    # 1970s
+    population_1970 = models.FloatField(default=0.0, null=True)
+    population_1971 = models.FloatField(default=0.0, null=True)
+    population_1972 = models.FloatField(default=0.0, null=True)
+    population_1973 = models.FloatField(default=0.0, null=True)
+    population_1974 = models.FloatField(default=0.0, null=True)
+    population_1975 = models.FloatField(default=0.0, null=True)
+    population_1976 = models.FloatField(default=0.0, null=True)
+    population_1977 = models.FloatField(default=0.0, null=True)
+    population_1978 = models.FloatField(default=0.0, null=True)
+    population_1979 = models.FloatField(default=0.0, null=True)
+    # 1980s
+    population_1980 = models.FloatField(default=0.0, null=True)
+    population_1981 = models.FloatField(default=0.0, null=True)
+    population_1982 = models.FloatField(default=0.0, null=True)
+    population_1983 = models.FloatField(default=0.0, null=True)
+    population_1984 = models.FloatField(default=0.0, null=True)
+    population_1985 = models.FloatField(default=0.0, null=True)
+    population_1986 = models.FloatField(default=0.0, null=True)
+    population_1987 = models.FloatField(default=0.0, null=True)
+    population_1988 = models.FloatField(default=0.0, null=True)
+    population_1989 = models.FloatField(default=0.0, null=True)
+    # 1990s
+    population_1990 = models.FloatField(default=0.0, null=True)
+    population_1991 = models.FloatField(default=0.0, null=True)
+    population_1992 = models.FloatField(default=0.0, null=True)
+    population_1993 = models.FloatField(default=0.0, null=True)
+    population_1994 = models.FloatField(default=0.0, null=True)
+    population_1995 = models.FloatField(default=0.0, null=True)
+    population_1996 = models.FloatField(default=0.0, null=True)
+    population_1997 = models.FloatField(default=0.0, null=True)
+    population_1998 = models.FloatField(default=0.0, null=True)
+    population_1999 = models.FloatField(default=0.0, null=True)
+    # 2000s
+    population_2000 = models.FloatField(default=0.0, null=True)
+    population_2001 = models.FloatField(default=0.0, null=True)
+    population_2002 = models.FloatField(default=0.0, null=True)
+    population_2003 = models.FloatField(default=0.0, null=True)
+    population_2004 = models.FloatField(default=0.0, null=True)
+    population_2005 = models.FloatField(default=0.0, null=True)
+    population_2006 = models.FloatField(default=0.0, null=True)
+    population_2007 = models.FloatField(default=0.0, null=True)
+    population_2008 = models.FloatField(default=0.0, null=True)
+    population_2009 = models.FloatField(default=0.0, null=True)
+    
+    # 2010s
+    population_2010 = models.FloatField(default=0.0, null=True)
+    population_2011 = models.FloatField(default=0.0, null=True)
+    population_2012 = models.FloatField(default=0.0, null=True)
+    population_2013 = models.FloatField(default=0.0, null=True)
+    population_2014 = models.FloatField(default=0.0, null=True)
+    population_2015 = models.FloatField(default=0.0, null=True)
+    population_2016 = models.FloatField(default=0.0, null=True)
+    population_2017 = models.FloatField(default=0.0, null=True)
+    population_2018 = models.FloatField(default=0.0, null=True)
+
+    # 2019s = None
+    population_2019 = models.FloatField(default=0.0, null=True)
