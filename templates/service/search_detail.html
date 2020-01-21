@@ -7,6 +7,30 @@
     <title>Search Country and Year</title>
 </head>
 <body>
+<!-- 로그인 start -->
+<div class="container-md pt-5">
+    {% if not request.user.is_authenticated %}
+    <p><a href="/member/sign_in"  class="btn btn-dark"> 로그인 - SignIn </a>
+    <a href="/member/sign_up"  class="btn btn-dark" > 회원가입 - SignUp </a></p>
+
+    {% else %}
+
+    <p> 반갑습니다. {{request.user.name}}님</p>
+    <hr />
+    아이디 정보 : {{request.user.username}} <br/>
+    이름 정보   : {{request.user.name}} <br/>
+    이메일 정보 : {{request.user.email}} <br/>
+    <hr />
+    
+    <p><a href="/member/user_mypage"> 마이페이지 </a>
+    <a href="/member/sign_out"> 로그아웃 </a></p>
+    
+    {% endif %}
+</div>
+
+
+<!-- 로그인 end -->
+
     <form action ="/service/search_show" method ="post">
         <h4>나라명과 년도 검색하세요 </h4>
         <td><input type ="text" name ="country_name"/></td>

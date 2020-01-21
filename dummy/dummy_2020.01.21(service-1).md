@@ -1,3 +1,8 @@
+# dummy_2020.01.21(service-1)
+---
+
+```py
+
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 # DB
@@ -223,3 +228,5 @@ def search_country_graph(request):
         return render(request, 'service/search_country_graph.html', {'one':data, 'gdp':gdp, "year":y_real,"korea":real_korea,"file_name":html_file_path})
 
 
+
+```
