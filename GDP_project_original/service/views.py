@@ -64,17 +64,12 @@ def search_show(request) :
             y= [float(data[0]),float(avg['gdp_avg'])]
             x =[(str(tmp_year)+"년 "+country_name+"의 GDP") ,
                 str(tmp_year)+"년 "+ "평균 GDP" ]
+            print(x)
             y= [float(data[0]),float(avg['gdp_avg'])]    
-            print (x, y)
-            # plt.bar(x,y)
-            # plt.title("GDP")
-            # plt.xlabel(str(country_name)+"GDP와 그해 평균 GDP ")
-            # plt.ylabel("GDP (USD)")
-            # plt.draw()
-            # img = io.BytesIO() # img에 byte배열로 보관
-            # plt.savefig(img, format="png")
-            # img_url = base64.b64encode(img.getvalue()).decode()
-            # plt.close()
+            # print (x, y)
+
+
+
             dict1 = dict()
             dict1[country_name+" GDP_in " +str(tmp_year)] = data[0]
             dict1["Average GDP_in " +str(tmp_year)] = float(avg['gdp_avg'])
@@ -86,7 +81,7 @@ def search_show(request) :
                 json.dump(dict1, json_file)
 
             return render (request,'service/search_show.html',
-            {"graph1":'data:;base64,{}'.format(img_url),"xlist":x,"list":y,'country':country_name,"year":tmp_year,"file_name":html_file_path})
+            {"xlist":x,"list":y,'country':country_name,"year":tmp_year,"file_name":html_file_path})
     
         return render (request, 'service/search_show.html')
 
@@ -130,17 +125,7 @@ def sort_by_year(request) :
         df = pd.DataFrame(x,y)
         print(x)
         print("##",x,len(x),y,len(y))
-        # plot_font() 
-        # plt.bar(x,y)
-        # plt.title(str(year)+"년도 Top +"+str(how)+" GDP")
-        # plt.xlabel('나라 이름')
-        # plt.ylabel("GDP (USD)")
-        # plt.draw()
-        # img = io.BytesIO() # img에 byte배열로 보관
-        # plt.savefig(img, format="png")
-        # img_url = base64.b64encode(img.getvalue()).decode()
-        # plt.close()
-
+        
         # 제이슨 배포용 코드 
         dict1 = dict() 
         for idx, val  in  enumerate(y):
