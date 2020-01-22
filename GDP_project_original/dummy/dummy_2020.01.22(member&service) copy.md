@@ -1,5 +1,67 @@
 
+```py
+def search_country_graph_pop(request):
+    if request.method == 'GET':
+        ### 나라의 1인당 GDP 구하기
 
+        ## 클릭한 나라의 인구 값 출력
+        CountryName = request.GET["CountryName_pop"]                                                  
+        data = PopulationTable.objects.get(CountryName=CountryName)                                   
+
+        sql = "SELECT * FROM SERVICE_POPULATIONTABLE WHERE COUNTRYNAME =%s"                   
+        cursor.execute(sql, [data.CountryName])
+        pop = cursor.fetchone()                                                               
+        Country_pop = list(pop)[2:]                                                             
+        # print(Country_pop)
+
+        
+        ## 클릭한 나라의 GDP 값 출력
+
+        sql = "SELECT * FROM SERVICE_GDPTABLE WHERE COUNTRYNAME =%s"
+        cursor.execute(sql, [data.CountryName])
+        gdp1 = cursor.fetchone()
+
+        Country_gdp = list(gdp1)[2:]
+        #Country_pop = 해당 나라 인구/Country_gdp = 해당 나라 GDP
+
+        ## GDP/인구 값 출력
+        capita=[]
+        for i in range (0,60,1):    # 0의 값으로 나누면 에러가 나니까 예외처리를 한다
+            try:
+                avg=Country_gdp[i]/Country_pop[i]
+                capita.append(avg)
+            except:
+                avg1=1
+                capita.append(avg1)
+        # print(capita) #clear
+
+        ### 한국 1인당 GDP 출력
+
+        ## 한국 인구 출력
+        sql = "SELECT * FROM SERVICE_POPULATIONTABLE WHERE COUNTRYNAME = 'Korea, Rep.'"
+        cursor.execute(sql)
+        korea=cursor.fetchone()
+        Korea_pop=list(korea[2:])
+        # print(year_korea, Korea_pop) 한국의 연도 = year_korea, 한국의 인구수 = Korea_pop
+
+        ## 한국의 GDP 출력
+        sql = "SELECT * FROM SERVICE_GDPTABLE WHERE COUNTRYNAME = 'Korea, Rep.'"
+        cursor.execute(sql)
+        Korea_gdp_test = cursor.fetchone()  # fetchone()으로 받으면 (...) fetchall()로 받으면 [(...)]형태가 된다
+        korea_gdp =list(Korea_gdp_test[2:])
+
+        # 한국 GDP/인구 출력
+        kor_capita = []
+        for i in range(0,60,1):
+            try:
+                avg_kor=korea_gdp[i]/Korea_pop[i]
+                kor_capita.append(avg_kor)
+            except:
+                kor_capita.append(1)
+        # print(kor_capita, len(kor_capita)) clear kor_capita = 한국 1인당 GDP
+
+        return render(request,'service/search_country_graph_pop.html',{'one':data,'capita':capita,'kor_capita':kor_capita})
+```
 
 
 ```py
