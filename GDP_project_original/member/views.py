@@ -20,6 +20,12 @@ User = get_user_model()
 
 # Create your views here.
 
+
+
+
+
+
+
 def user_edit_pw(request): 
     if request.method =='GET':
         if not request.user.is_authenticated:
@@ -113,8 +119,8 @@ def user_edit_check(request):
 # user_edit - 정보 수정
 def user_edit(request):
     if request.method =='GET' :
-        if not request.user.is_authenticated:
-            return redirect('member/sign_in')
+        # if not request.user.is_authenticated:
+        #     return redirect('member/sign_in')
 
         user_check = User.objects.get(username=request.user)
         return render(request,'member/user_edit.html',{'user_check':user_check})
@@ -173,6 +179,8 @@ error = '''
 @csrf_exempt
 def sign_in(request):
     if request.method == 'GET': 
+        # 
+        # if request.GET.get()
         return render(request, 'member/sign_in.html')
 
     elif request.method == 'POST':
@@ -186,7 +194,9 @@ def sign_in(request):
             login(request, user)
             # 성공 _ 리다이렉트 
             # return redirect('/member/main')
-            return redirect('/service/search_detail')
+            prev = request.session['prev'] 
+            print(prev)
+            return redirect(prev)
         else:
             # 실패_ 에러 메시지 전송  {'error':"username or password is incorrect!"}
             return HttpResponse(error)

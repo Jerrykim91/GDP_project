@@ -26,9 +26,27 @@
     }
     </style>
 </head>
+
 <body>
-    {{name}}
-    <a href= {{file_name}}  download>다운로드</a>
+<!-- nav.html -->
+<!-- {% include "../main/nav.html" %} -->
+
+{% if not request.user.is_authenticated %}
+<!-- 방문자 상태 -->
+<p><a href="/member/sign_in"  class="btn btn-dark"> 로그인 - SignIn </a>
+<a href="/member/sign_up"  class="btn btn-dark" > 회원가입 - SignUp </a></p>
+<h3><a href="/service/search_detail" class="btn btn-primary">메인으로</a></h3>
+<p><a href= "/member/sign_in" >다운로드</a>
+<input type="button" value="뒤로가기" onclick="history.back();" />
+{% else %}
+<!-- 로그인 상태 -->
+
+<h3><a href="/service/search_detail" class="btn btn-primary">메인으로</a></h3>
+<p><a href= {{file_name}}  download>다운로드</a>
+<a href="/member/sign_out"> 로그 아웃  </a></p>  
+<input type="button" value="뒤로가기" onclick="history.back();" />
+{% endif %}
+
     <div id="chart"></div>
     <script> 
         $(function(){        
@@ -112,7 +130,9 @@
             //         ]);
             // }, 500);
         })
-        </script>        
+        </script>    
+
+
 </body>
 </html>
 

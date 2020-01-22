@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
+# 세션
+from django.contrib.auth.decorators import login_required
+
 # DB
 from django.db import connection
 from django.db.models import Sum,Min,Max,Count,Avg
@@ -14,10 +17,12 @@ import pandas as pd
 from .models import GDPTable
 #
 import urllib.request
+# 쿼리
 import json
 import io
 # byte배열로 이미지를 변환
 import base64
+
 
 # 변수 
 cursor = connection.cursor()
@@ -40,14 +45,18 @@ def plot_font():
 # search_detail - 검색하는 창  
 def search_detail(request) :
     if request.method == 'GET' :
+        request.session['prev'] = request.path
+        print(request.session['prev'])
         return render(request, 'service/search_detail.html')
 
 
-# @login_required
+#@login_required
 @csrf_exempt
 # search_show - 검색 결과 출력 창 
 def search_show(request) :
     if request.method == 'GET' :
+        request.session['prev'] = request.path
+        print(request.session['prev'])
         key =request.session['country']
         if key  : 
             # 데이터 가져오기 
@@ -99,6 +108,7 @@ def search_show(request) :
 # sort_by_year  
 def sort_by_year(request) :
     if request.method == 'GET' : 
+        request.session['prev'] = request.path
         tmp_year = request.session['year']
         how = int(request.session['how_many'])
         year     = "GDP_" + str(tmp_year)
@@ -151,15 +161,26 @@ def sort_by_year(request) :
 # search_country - 나라 검색 # 뷰어 
 def search_country(request): 
     if request.method == 'GET':
-        #
+        #request.session['prev'] = request.path     
+
         data = list(GDPTable.object.all().values("CountryName"))
         return render(request, 'service/search_country.html',{'list':data})
 
+####
+#PATH = "/service/search_country_graph?CountryName="
+#con = COUNTRYNAME.replace(" ","+")
+#real_path = PATH + str(con)
 
 # @login_required
 # search_country_graph - 나라 클릭하면 연도 그래프
 def search_country_graph(request):
     if request.method == 'GET':
+        # print('='*50)
+        # request.session['prev']  = request.path  
+        request.session['prev'] = request.get_full_path()      
+        print(request.get_full_path())
+        
+
         # cn = 템플릿으로 받은 CountryName
         cn = request.GET["CountryName"] 
         # data = 모델을 통새서 가져온 CountryName 의 값이 cn인 것
@@ -192,6 +213,9 @@ def search_country_graph(request):
         real_korea=list(korea[2:])
         print('@@@@@@@@@',real_korea, type(real_korea))
         
+
+
+
         # json 작업 
         dict1=dict()
         for idx, val in enumerate(y_real):

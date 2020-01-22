@@ -6,13 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Search Country and Year</title>
 </head>
+
+
+
 <body>
+<!-- nav.html -->
+
 <!-- 로그인 start -->
 <div class="container-md pt-5">
     {% if not request.user.is_authenticated %}
-    <p><a href="/member/sign_in"  class="btn btn-dark"> 로그인 - SignIn </a>
-    <a href="/member/sign_up"  class="btn btn-dark" > 회원가입 - SignUp </a></p>
 
+    <a href="/member/sign_up" class="btn btn-success mr-sm-1">회원가입 - SignUp</a>
+    <a href="/member/sign_in" class="btn btn-success mr-sm-2">로그인 - SignIn</a>
     {% else %}
 
     <p> 반갑습니다. {{request.user.name}}님</p>
@@ -26,8 +31,6 @@
     <a href="/member/sign_out"> 로그아웃 </a></p>
     
     {% endif %}
-</div>
-
 
 <!-- 로그인 end -->
 
@@ -47,6 +50,7 @@
     </form>
     <hr> <hr>
     <h4> 나라별 GDP 상승세 </h4>
-    <a href="/service/search_country" class="form-control" style="margin-bottom: 5px;" > search_country</a>  
+    <a href="/service/search_country" class="form-control" style="margin-bottom: 5px;" > search_country</a>
+</div>
 </body>
 </html>

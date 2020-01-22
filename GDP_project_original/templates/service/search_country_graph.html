@@ -33,9 +33,27 @@
 
             <div style="margin-top:5px; margin-bottom: 5px;">
                 <h3>{{one.CountryName}} </h3>
-                <a href= {{file_name}}  download>다운로드</a>
-                <h3><a href="/service/search_country" class="btn btn-primary">목록으로</a></h3>
             </div>
+            
+            {% if not request.user.is_authenticated %}
+            <!-- 방문자 상태 -->
+            <p><a href="/member/sign_in"  class="btn btn-dark"> 로그인 - SignIn </a>
+            <a href="/member/sign_up"  class="btn btn-dark" > 회원가입 - SignUp </a></p> 
+            <p><h3><a href="/service/search_country" class="btn btn-primary">목록으로</a></h3>
+            <h3><a href="/service/search_detail" class="btn btn-primary">홈으로</a></h3>
+            <p><a href= "/member/Recommend_sign_in" >다운로드</a>
+            <input type="button" value="뒤로가기" onclick="history.back();" />
+            {% else %}
+            <!-- 로그인 상태 -->
+            <p><h3><a href="/service/search_country" class="btn btn-primary">목록으로</a></h3>
+            <h3><a href="/service/search_detail" class="btn btn-primary">홈으로</a></h3>
+
+            <a href= {{file_name}}  download>다운로드</a>
+            <a href="/member/sign_out"> 로그아웃  </a></p>  
+            <input type="button" value="뒤로가기" onclick="history.back();" />
+            {% endif %}
+
+
             <table class="table">
             <tr>
                 <th class="bg-light">{{one.CountryName}}의 GDP 그래프</th>
@@ -44,6 +62,10 @@
             <div id="chart"></div>
             
             
+
+
+
+
             
                 <!-- <img src='{{graph1}}' width="1600" height="800"/> -->
                 </tr>         
@@ -138,3 +160,8 @@
         </script>        
     </body>
 </html>
+
+
+<!-- {% if not request.user.is_authenticated %}
+{% else %}
+{% endif %} -->

@@ -160,3 +160,5 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 AUTH_USER_MODEL="member.LIST"
 # 인증 확인 실패시 리다이렉트할 경로
 LOGIN_URL = '/sign_in/'
+# 브라우저를 종료하면 세션이 종료
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
