@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>board_wirte</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <form action = '/board/board_write' method = 'POST' enctype='multipart/form-data'>
+    <table>
+        <tr>
+            <th>제목</th>
+            <th><input type='text' style='width:800px' class='form-control' name='title' /></th>      
+        </tr>
+         <tr>
+            <th>내용</th>
+            <th><textarea class='form-control' name='content'/></textarea></th>      
+        </tr>
+        <tr>
+            <th>이미지</th> 
+            <th><input type='file' class='form-control' name='img' style='width: 800px' src = 'data:;base64,{{img}}' /></th>      
+        </tr>
+        <tr>
+            <th>작성자 이메일</th> 
+            <th><input type='text' style='width:800px' class='form-control' name='writer_email' /></th>      
+        </tr>
+    </table>
+    <input type = 'submit', value = '작성완료'/>
+    
+    
+        
+
+    
+    
+    </form>
+</body>
+</html>

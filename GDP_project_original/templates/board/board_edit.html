@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>board_edit</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <form action = '/board/board_edit' method = 'POST' enctype='multipart/form-data'>
+
+        <input type='hidden' name='menu' value='2'/>
+        <table>
+            <tr>
+                <th>게시물번호</th>
+                <th><input type='text' style='width:800px' class='form-control' value = '{{row.no}}' name = 'no' readonly/></th>      
+            </tr>
+            <tr>
+                <th>제목</th>
+                <th><input type='text' style='width:800px' class='form-control' name='title' value = '{{row.title}}'/></th>      
+            </tr>
+             <tr>
+                <th>내용</th>
+                <th><textarea class='form-control' name='content' value = '{{row.content}}'/>{{row.content}}</textarea></th>      
+            </tr>
+            <tr>
+                <th>작성자 이메일</th> 
+                <th><input type='text' style='width:800px' class='form-control' value = '{{row.writer_email}}' name = 'writer_email' readonly /></th>      
+            </tr>
+            <tr>
+                <th>이미지</th> 
+                <th>
+                    <img id="img" src = 'data:;base64,{{img}}' style='width:100%'/>
+                    <input type='file' id="file" class='form-control' name='img' style='width: 800px' src = 'data:;base64,{{img}}' />
+                </th>      
+            </tr>
+            <tr>
+                <th>작성날짜</th> 
+                <th><input type='text' style='width:800px' class='form-control' value = '{{row.regdate}}' name = 'regdate' readonly /></th>      
+            </tr>
+            
+            </tr>
+        </table>
+        <input type = 'submit', value = '수정완료'/>
+          
+    </form>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#img').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $(document).ready(function(){
+            $("#file").change(function(){
+                readURL(this);
+            });
+        });
+    </script>
+
+</body>
+</html>

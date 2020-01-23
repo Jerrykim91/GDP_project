@@ -9,13 +9,10 @@
 {% include '../main/navbar.html' %}
 
 <!-- login start -->
-<div class="container-md pt-5">
+<!-- <div class="container-md pt-5">
     {% if not request.user.is_authenticated %}
-    <!-- 방문자 상태 -->
     <a href="/member/sign_up" class="btn btn-success mr-sm-1">회원가입 - SignUp</a>
     <a href="/member/sign_in" class="btn btn-success mr-sm-2">로그인 - SignIn</a>
-    {% else %}
-    <!-- 로그인 상태 -->
     <p> 반갑습니다. {{request.user.name}}님</p>
     <hr />
     아이디 정보 : {{request.user.username}} <br/>
@@ -26,7 +23,7 @@
     <p><a href="/member/user_mypage"> 마이페이지 </a>
     <a href="/member/sign_out"> 로그아웃 </a></p>
     
-    {% endif %}
+    {% endif %} -->
 <!-- login end -->
 
 

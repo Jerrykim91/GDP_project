@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>board_content</title>
+
+    
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='/static/css/bootstrap.css'/>
+</head>
+<body>
+    {% autoescape off %}
+    <table>
+        <tr>
+            <th>게시물번호</th>
+            <th type='text' style='width:800px' class='form-control'>{{tmp.no}}</th>      
+        </tr>
+        <tr>
+            <th>조회수</th>
+            <th type='text' style='width:800px' class='form-control'>{{tmp.hit}}</th>      
+        </tr>
+        <tr>
+            <th>제목</th>
+            <th type='text' style='width:800px' class='form-control' >{{tmp.title}}</th>      
+        </tr>
+        <tr>
+            <th>내용</th>
+            <th><textarea class='form-control' name='content'/>{{tmp.content}}</textarea></th>      
+        </tr>
+        <tr>
+            <th>작성자 이메일</th> 
+            <th type='text' style='width:800px' class='form-control' >{{tmp.writer_email}}</th>      
+        </tr>
+        <tr>
+            <th>이미지</th>
+            <th><img src = 'data:;base64,{{img}}' style='width:100%'/></th>      
+        </tr>
+        <tr>
+            <th>작성날짜</th>
+            <th><input type='text' style='width:800px' class='form-control' >{{tmp.regdate}}</th>      
+        </tr>
+    </table>
+
+    <a href="/board/board_qna">목록으로</a>
+    {% if prev > 0 %}
+    <a href="/board/board_content?no={{prev}}" class="btn btn-success" >이전글</a>
+    {% else %}
+    <a href="#" class="btn btn-success disabled" >이전글</a>
+    {% endif %}
+    
+    {% if next > 0 %}
+    <a href="/board/board_content?no={{next}}" class="btn btn-success" >다음글</a>
+    {% else %}
+    <a href="#" class="btn btn-success disabled" >다음글</a>
+    {% endif %}
+
+    {% endautoescape %}
+</body>
+</html>

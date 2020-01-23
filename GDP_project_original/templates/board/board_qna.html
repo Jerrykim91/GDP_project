@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>board_qna</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <form action = '/board/board_edit' method = 'post' id="form">
+    <input type='hidden' name='menu' value='1'/>
+    
+    <h3>board_qna</h3>
+    <a href = '/board/board_write'>글쓰기</a>
+    <input type = 'submit' value = "글수정"/>
+    <input type = 'submit' value = "글삭제" id="btn_delete"/>
+    <table>
+        <tr>
+            <th>게시물번호</th>
+            <th>제목</th>
+            <th>작성자 이메일</th>
+            <th>조회수</th>
+            <th>작성날짜</th>
+        </tr>
+        
+        {% for one in rows1 %}
+        <tr>
+            <th><input type='radio' value='{{one.no}}' name='chk' />{{one.no}}</th>
+            <th><a href = '/board/board_content?no={{one.no}}'>{{one.title}}</th>
+            <th>{{one.writer_email}}</th>
+            <th>{{one.hit}}</th>
+            <th>{{one.regdate}}</th>
+
+        </tr>
+        {% endfor %}>
+    </table>
+    </form>
+
+    <script>
+        $(function(){
+            $('#btn_delete').click(function(){
+                $('#form').attr('action', '/board/board_delete')
+            });
+        })
+    </script>
+</body>
+</html>
