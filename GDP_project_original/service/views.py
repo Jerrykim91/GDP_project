@@ -23,7 +23,6 @@ import io
 # byte배열로 이미지를 변환
 import base64
 
-
 # 변수 
 cursor = connection.cursor()
 

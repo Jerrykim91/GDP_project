@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>result</title>
-    
+
+<!-- top script  -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.3/c3.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.7/d3.min.js"></script>
@@ -13,6 +14,7 @@
 
     <script src="https://d3js.org/d3-format.v1.min.js"></script>
 
+<!-- style  -->
     <style>
     .c3-region-0 {
         fill: red;
@@ -28,23 +30,29 @@
     </style>
 </head>
 
-
+<!-- body  -->
 <body>
     
+<!-- login start -->
     {% if not request.user.is_authenticated %}
+    <!-- 방문자 상태 -->
     <p><a href="/member/sign_in"  class="btn btn-dark"> 로그인 - SignIn </a>
     <a href="/member/sign_up"  class="btn btn-dark" > 회원가입 - SignUp </a></p>
-    <h3><a href="/service/search_detail" class="btn btn-primary">홈으로</a></h3>
+    <h3><a href="/service/search_detail" class="btn btn-primary">메인으로</a></h3>
     <p><a href= "/member/sign_in" >다운로드</a>
     <input type="button" value="뒤로가기" onclick="history.back();" />
     {% else %}
-    <h3><a href="/service/search_detail" class="btn btn-primary">홈으로</a></h3>
+    <!-- 로그인 상태 -->
+    <h3><a href="/service/search_detail" class="btn btn-primary">메인으로</a></h3>
     <p><a href= {{file_name}}  download>다운로드</a>
     <a href="/member/sign_out"> 로그 아웃  </a></p>  
     <input type="button" value="뒤로가기" onclick="history.back();" />
     {% endif %}
 
     <div id="chart"></div>
+<!-- login end -->
+
+<!-- script  -->
     <script> 
         $(function(){               
             // string을 그대로 받으면 에러가 나니까 replace로 문자를 제외한 나머지 것들을 공백처리
@@ -128,8 +136,6 @@
             // }, 500);
         })
     </script>
-
-
 </body>
 </html>
 

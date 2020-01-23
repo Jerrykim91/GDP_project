@@ -1,4 +1,89 @@
 
+
+이중 이프문 사용해야하는데 
+    1 번과 2번을 모두 출력해야함 
+    1번과 2번모두 폼테그를 사용하고 있고 
+    경우를 생각해보면 
+
+    1번이 동작안할때 작동해야하니까 포문을 분리 
+    그런데 포문 이름이 같음 
+show = > 
+top
+
+```js
+$("form").submit(function( ){
+    if ($('#country_name').val() == True)
+    {
+            $("form").submit(function( ){
+                if ($('#country_name').val() == "" || $('#year1').val() == "" ){
+                    alert('똑바로 해1')
+                    $("#country_name").focus();
+                    return false;
+                
+                }   else {
+                        $('#search1').click(function(){
+                            $('#form').attr('action', '/service/search_show')
+                        })
+
+                    }
+            })
+        return false;
+    
+    } else {
+            $('#search1').click(function()
+            {
+                $('#form').attr('action', '/service/search_show')
+
+
+
+            })
+
+        }
+})
+
+```
+
+둘중 하나를 무조건 선택하는데 
+
+
+
+```js
+    <script>
+
+        $("#search1").click(function(){
+            if ($('#country_name').val() == "" || $('#year1').val() == "" ){
+                alert('정확한 값을 입력해주세요 = 나라명과 연도 ')
+                $("#country_name").focus();
+                return false;
+            }   
+            else {
+                
+                   $('#form1').submit()
+            }
+        })  
+
+        $("#search2").click(function(){
+            if ($('#how_many').val() == "" || $('#year2').val() == "" ){
+                alert('정확한 값을 입력해주세요 = 년도와 1위 나라수 ')
+                $("#how_many").focus();
+                return false;
+            }   
+            else {
+                   $('#form2').submit()
+
+            }
+        })  
+    </script>
+```
+focus() => input태그를 마우스로 클릭하여 입력상태로 만든것을 포커스를 얻었다고 함
+
+
+
+
+
+
+
+
 ```py
 < views.py>
 @csrf_exempt

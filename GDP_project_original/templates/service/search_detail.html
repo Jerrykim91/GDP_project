@@ -5,21 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Search Country and Year</title>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    
 </head>
 
 
-
+<!-- body -->
 <body>
-<!-- nav.html -->
+
 
 <!-- login start -->
 <div class="container-md pt-5">
     {% if not request.user.is_authenticated %}
-
+    <!-- 방문자 상태 -->
     <a href="/member/sign_up" class="btn btn-success mr-sm-1">회원가입 - SignUp</a>
     <a href="/member/sign_in" class="btn btn-success mr-sm-2">로그인 - SignIn</a>
     {% else %}
-
+    <!-- 로그인 상태 -->
     <p> 반갑습니다. {{request.user.name}}님</p>
     <hr />
     아이디 정보 : {{request.user.username}} <br/>
@@ -34,8 +38,9 @@
 <!-- login end -->
 
 
-<!-- code start -->
-<form action ="/service/search_show" method ="post">
+<!-- main code start -->
+<form action ="/service/search_show" method ="post" ID="form1">
+    <!-- 1번  -->
     <h4>나라명과 년도 검색하세요 </h4>
         <select class='form-control'  name='country_name' id = 'country_name'>
             <option value='' selected>-- 선택 --</option> 
@@ -53,7 +58,8 @@
 </form>
 
 <hr> <hr>
-<form action ="/service/sort_by_year" method ="post">
+<form action ="/service/sort_by_year" method ="post" ID="form2">
+    <!-- 2번 -->
     <h4>년도 / 1위부터 나라 수 </h4>
         <select class='form-control'  name='year' id = 'year2'>
             <option value='' selected>-- 선택 --</option> 
@@ -73,22 +79,34 @@
 <h4> 나라별 GDP 상승세 </h4>
 <a href="/service/search_country" class="form-control" style="margin-bottom: 5px;" > search_country</a>  
 
-
+<!-- script 확인 필요 -->
     <script>
 
-        $("form").submit(function(){
+        $("#search1").click(function(){
             if ($('#country_name').val() == "" || $('#year1').val() == "" ){
-                alert('똑바로 해1')
+                alert('정확한 값을 입력해주세요 = 나라명과 연도 ')
                 $("#country_name").focus();
                 return false;
-            }   else {
-                    $('#search1').click(function(){
-                        $('#form').attr('action', '/service/search_show')
-                    })
-
-                }
+            }   
+            else {
+                
+                   $('#form1').submit()
+            }
         })  
 
+        $("#search2").click(function(){
+            if ($('#how_many').val() == "" || $('#year2').val() == "" ){
+                alert('정확한 값을 입력해주세요 = 년도와 1위 나라수 ')
+                $("#how_many").focus();
+                return false;
+            }   
+            else {
+                   $('#form2').submit()
+
+            }
+        })  
     </script>
+
 </body>
 </html>
+

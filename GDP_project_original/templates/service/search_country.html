@@ -11,13 +11,14 @@
 
 </head>
 
+<!-- body  -->
 <body>
     {% autoescape off %}
     <input type='button' value = '뒤로가기' onclick = 'history.back();'/>
 
-        <form action='/service/search_country_graph' method='GET'>
+        <form action='/service/search_country_graph' method='GET' id = 'form1' >
             <label>
-                <select class='form-control'  name='CountryName'>
+                <select class='form-control'  name='CountryName' id = 'CountryName1'>
                     <option value='' selected>-- 선택 --</option>
                     
                     {% for one in list %}
@@ -25,11 +26,24 @@
                     {% endfor %}
                 </select>
             </label>
-            <input type='submit' value = '그래프 보기'/>  
+            <input type='submit' value = '그래프 보기'id = 'search1'/>  
         </form>
         
     {% endautoescape %}
-    
+    <script>
+
+        $("#search1").click(function(){
+            if ($('#CountryName').val() == "" || $('#CountryName1').val() == "" ){
+                alert('정확한 값을 입력해주세요 = 나라이름 선택 ')
+                $("#CountryName").focus();
+                return false;
+            }   
+            else {
+                
+                   $('#form1').submit()
+            }
+        })  
+    </script>
 </body>
 </html>
 

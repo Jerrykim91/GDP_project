@@ -13,16 +13,11 @@ from django.contrib.auth import logout as logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
-
 # 변수 선언
 User = get_user_model()
 
 
 # Create your views here.
-
-
-
-
 
 
 # user_edit_pw 
