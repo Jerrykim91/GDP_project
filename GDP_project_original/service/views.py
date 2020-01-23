@@ -22,7 +22,7 @@ import json
 import io
 # byte배열로 이미지를 변환
 import base64
-
+from base64 import b64encode
 # 변수 
 cursor = connection.cursor()
 
@@ -149,7 +149,46 @@ def search_show(request) :
             y= [float(data[0]),float(avg['gdp_avg'])]    
             # print (x, y)
 
+            
+            try : 
+                sql1 = "SELECT * FROM SERVICE_NATIONDATATABLE WHERE COUNTRYNAME = '"+country_name +"'"
+                cursor.execute(sql1)
+                data1 = cursor.fetchall()
+                print(type(data1))
+                img_data = []
+                for i in data1[0] : 
+                    tmp =str(i).replace(" ","")
+                    img_data.append(tmp)
+                print("**",img_data)
+                flag = img_data[-1]
+                loc =img_data[-2]
+                real_img_data = img_data[1:4]
 
+                if loc =='no_value' or flag =='no_value' : 
+                    print("tlqkf",loc)
+                    
+                    file1 = open('./static/files/no_image.jpg','rb')
+                    noimg = file1.read()
+                    img64 = b64encode(noimg).decode("utf-8")
+                    data4 = "data:;base64,{}".format(img64)
+                    if loc =='no_value' : 
+                        print("no loc")
+                        loc = data4
+                        
+                    if flag =='no_value' :
+                        print("no flag")
+                        flag = data4
+                        
+
+
+            except : 
+                real_img_data = ["no_data","no_data","no_data"]
+                file1 = open('./static/files/no_image.jpg','rb')
+                noimg = file1.read()
+                img64 = b64encode(noimg).decode("utf-8")
+                data4 = "data:;base64,{}".format(img64)
+                loc = data4
+                flag = data4
 
             dict1 = dict()
             dict1[country_name+" GDP_in " +str(tmp_year)] = data[0]
@@ -162,7 +201,7 @@ def search_show(request) :
                 json.dump(dict1, json_file)
 
             return render (request,'service/search_show.html',
-            {"xlist":x,"list":y,'country':country_name,"year":tmp_year,"file_name":html_file_path})
+            {"xlist":x,"list":y,'country':country_name,"year":tmp_year,"file_name":html_file_path,"img_data":real_img_data,"flag":flag,"loc":loc})
     
         return render (request, 'service/search_show.html')
 
@@ -285,7 +324,21 @@ def search_country_graph(request):
         korea=cursor.fetchone()
         real_korea=list(korea[2:])
         print('@@@@@@@@@',real_korea, type(real_korea))
+ 
+        sql1 = "SELECT * FROM SERVICE_NATIONDATATABLE WHERE COUNTRYNAME = '"+ cn +"'"
+        cursor.execute(sql1)
+        data1 = cursor.fetchall()
+        print(data1)
+        img_data = []
         
+        for i in data1[0] : 
+            tmp =str(i).replace(" ","")
+            img_data.append(tmp)
+        print("**",img_data)
+        flag = img_data[-1]
+        loc =img_data[-2]
+        real_img_data = img_data[1:4]
+
 
         # json 작업 
         dict1=dict()
@@ -300,6 +353,6 @@ def search_country_graph(request):
             json.dump(dict1, json_file)
 
         # return {'data': 클릭한 나라이름, 'gdp':나라 전체 gdp, 'y_real':년도}
-        return render(request, 'service/search_country_graph.html', {'one':data, 'gdp':gdp, "year":y_real,"korea":real_korea,"file_name":html_file_path})
+        return render(request, 'service/search_country_graph.html', {'one':data, 'gdp':gdp, "year":y_real,"korea":real_korea,"file_name":html_file_path,"flag":flag,"loc":loc,'country':cn,"img_data":real_img_data})
 
 

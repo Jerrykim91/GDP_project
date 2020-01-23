@@ -10,36 +10,9 @@
 show = > 
 top
 
-```js
-$("form").submit(function( ){
-    if ($('#country_name').val() == True)
-    {
-            $("form").submit(function( ){
-                if ($('#country_name').val() == "" || $('#year1').val() == "" ){
-                    alert('똑바로 해1')
-                    $("#country_name").focus();
-                    return false;
-                
-                }   else {
-                        $('#search1').click(function(){
-                            $('#form').attr('action', '/service/search_show')
-                        })
-
-                    }
-            })
-        return false;
-    
-    } else {
-            $('#search1').click(function()
-            {
-                $('#form').attr('action', '/service/search_show')
-
-
-
-            })
-
-        }
-})
+```sql
+SET DEFINE OFF
+DELETE FROM SERVICE_GDPTABLE WHERE COUNTRYNAME IN('Not classified', 'World', 'OECD members', 'High income', 'Post-demographic dividend', 'North America', 'European Union', 'IDA & IBRD total', 'Low & middle income', 'Middle income', 'IBRD only', 'Euro area', 'Upper middle income', 'Late-demographic dividend', 'East Asia & Pacific', 'Early-demographic dividend', 'Latin America & Caribbean', 'East Asia & Pacific (excluding high income)', 'East Asia & Pacific (IDA & IBRD countries)', 'Latin America & the Caribbean (IDA & IBRD countries)', 'Latin America & Caribbean (excluding high income)', 'South Asia (IDA & IBRD)', 'South Asia', 'IDA total', 'Sub-Saharan Africa (IDA & IBRD countries)', 'Sub-Saharan Africa', 'Sub-Saharan Africa (excluding high income)', 'IDA only', 'Heavily indebted poor countries (HIPC)', 'IDA blend', 'Pre-demographic dividend', 'Middle East & North Africa (excluding high income)', 'Middle East & North Africa (IDA & IBRD countries)', 'Europe & Central Asia', 'Lower middle income', 'Europe & Central Asia (IDA & IBRD countries)', 'Middle East & North Africa', 'Europe & Central Asia (excluding high income)', 'Arab World',  'Central Europe and the Baltics', 'Least developed countries: UN classification',  'Fragile and conflict affected situations', 'Low income', 'Small states', 'Other small states')
 
 ```
 
@@ -48,29 +21,17 @@ $("form").submit(function( ){
 
 
 ```js
-    <script>
+       <script>
 
         $("#search1").click(function(){
-            if ($('#country_name').val() == "" || $('#year1').val() == "" ){
-                alert('정확한 값을 입력해주세요 = 나라명과 연도 ')
-                $("#country_name").focus();
+            if ($('#CountryName').val() == "" || $('#CountryName1').val() == "" ){
+                alert('정확한 값을 입력해주세요 = 나라이름 선택 ')
+                $("#CountryName").focus();
                 return false;
             }   
             else {
                 
                    $('#form1').submit()
-            }
-        })  
-
-        $("#search2").click(function(){
-            if ($('#how_many').val() == "" || $('#year2').val() == "" ){
-                alert('정확한 값을 입력해주세요 = 년도와 1위 나라수 ')
-                $("#how_many").focus();
-                return false;
-            }   
-            else {
-                   $('#form2').submit()
-
             }
         })  
     </script>

@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>search_country</title>
-
-<!-- top script  -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
-</head>
+<!-- head  -->
+{% include '../main/head.html' %}
 
 <!-- body  -->
 <body>
+<!-- nav.html -->
+{% include '../main/navbar.html' %}
+
     {% autoescape off %}
-    <input type='button' value = '뒤로가기' onclick = 'history.back();'/>
+    <div class= "container">
+    <input type='button' value = '뒤로가기' onclick = 'history.back();'/>   
 
         <form action='/service/search_country_graph' method='GET' id = 'form1' >
             <label>
@@ -28,7 +24,7 @@
             </label>
             <input type='submit' value = '그래프 보기'id = 'search1'/>  
         </form>
-        
+    </div>
     {% endautoescape %}
     <script>
 
