@@ -1,37 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<!-- head  -->
-{% include '../main/head.html' %}
-
-<!-- body  -->
-<body>
-<!-- nav.html -->
-{% include '../main/navbar.html' %}
-
-{% if not request.user.is_authenticated %}
-<!-- 방문자 상태 -->
-<p><a href="/member/sign_in"  class="btn btn-dark"> 로그인 - SignIn </a>
-<a href="/member/sign_up"  class="btn btn-dark" > 회원가입 - SignUp </a></p>
-<h3><a href="/service/search_detail" class="btn btn-primary">메인으로</a></h3>
-<p><a href= "/member/sign_in" >다운로드</a>
-<input type="button" value="뒤로가기" onclick="history.back();" />
-{% else %}
-<!-- 로그인 상태 -->
-<h3><a href="/service/search_detail" class="btn btn-primary">메인으로</a></h3>
-<p><a href= {{file_name}}  download>다운로드</a>
-<a href="/member/sign_out"> 로그 아웃  </a></p>  
-<input type="button" value="뒤로가기" onclick="history.back();" />
-{% endif %}
-
-    <div id="chart"></div>
-
-<!-- script  -->
+{% include './head.html %}
+<body class="text-center">
+<div class="container-fluid">
+        {% include './navbar.html' %}
+    <h3>TOP {{one.CountryName}} </h3>
+    <div id="chart"></div>      
+</div>
     <script> 
-        $(function(){        
-                 
+        $(function(){               
             // string을 그대로 받으면 에러가 나니까 replace로 문자를 제외한 나머지 것들을 공백처리
             var str1 = '{{name}}'
-            // console.log(str1)
             str1 = str1.replace(/&#x27;/gi, "'");
             str1 = str1.replace(/&#39;/gi, "'");
             
@@ -63,8 +40,8 @@
                     // x축의 높이를 결정
                     x: {
                     // type 을 카테고리로 해야 문자열이 나온다 안 하면 Error
-                        type : 'category'
-                    //     height: 20,
+                        type : 'category',
+                        height: 80,
                     //     tick: {
                     //         values: [1960, 1965, 1970, 1975, 1980, 1985,1990,1995,2000,2005,2010,2015,2018]
                     //     }
@@ -89,7 +66,7 @@
                 // 차트의 크기 설정
             });
             setTimeout(function () {
-            chart.resize({height:700, width:1800})
+            chart.resize({height:700, width:1600})
             }, 1000);
             //     // 그리드 설정
             // setTimeout(function () {
@@ -108,8 +85,6 @@
             //         ]);
             // }, 500);
         })
-        </script>    
+        </script>        
 </body>
 </html>
-
-    

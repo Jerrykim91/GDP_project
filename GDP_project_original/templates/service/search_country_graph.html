@@ -1,38 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<!-- head  -->
-{% include '../main/head.html' %}
+{% include './head.html' %}
 
-<!-- body  -->
 <body class="text-center">
 
-<div class="container-fluid">
-    <!-- nav.html -->
-    {% include '../main/navbar.html' %}
-
-    {% if not request.user.is_authenticated %}
-    <!-- 방문자 상태 -->
-    <h3><a href="/service/search_country" class="btn btn-dark">목록으로</a></h3>
-    <a href= "/member/sign_in" >다운로드</a>
-    <input type="button" class="btn-sm btn-dark" value="뒤로가기" onclick="history.back();" />
-    {% else %}
-    <!-- 로그인 상태 -->
-    <a href= {{file_name}}  class="btn-sm btn-dark" download>Json_DownLoad</a>
-    <a href="/member/sign_out"> 로그아웃  </a></p>  
-    <input type="button" value="뒤로가기" onclick="history.back();" />
-    {% endif %}
-    <!-- 이미지 -->
-    Country : {{img_data.0}} </br>
-    Population : {{img_data.1}}</br>
-    Capital : {{img_data.2}}</br>
-    <img src ="{{flag}}" />
-    <img src ="{{loc}}" /></br>
-    <a href="https://en.wikipedia.org/wiki/{{country}}">{{country}}</a> 
-
-        <div style="margin-top:5px; margin-bottom: 5px;">
-            <h3>{{one.CountryName}} </h3>
-        </div>
-
+    
+    <div class="container-fluid">
+        {% include './navbar.html' %}
         <form action='/service/search_country_graph_pop' method='GET' name='2'>
             <table>
                 <tr>
@@ -40,17 +12,17 @@
                 </tr>
             </table>
         </form>
-
         <h3>GDP {{one.CountryName}} </h3>
+        Capital : {{img_data.2}}</br>
+        <label style = "width:120px;" style = "height:100px;"><img src ="{{flag}}" /></label><br/>
+        <a href="https://en.wikipedia.org/wiki/{{country}}">{{country}} 정보 더보기 (LINK)</a> 
         <div id="chart"></div>      
-    </div>   
+    </div>
 
-
-<!-- script  -->
         <script> 
         $(function(){               
 
-            var obj = eval('{{year}}')  //python 문자를 script 배열로 변환
+            var obj = eval('{{Country_gdp}}')  //python 문자를 script 배열로 변환
             obj.unshift('{{one.CountryName}}');
             //console.log(obj);
             
@@ -60,7 +32,7 @@
                 //console.log(obj1);   
             }
 
-            var korea = eval('{{korea}}')
+            var korea = eval('{{korea_gdp}}')
             korea.unshift('KOREA')
             console.log(korea);
                 
@@ -88,7 +60,7 @@
                 axis: { 
                     // x축의 높이를 결정
                     x: {
-                            height: 20,
+                            height: 80,
                             tick: {
                             values: [1960, 1965, 1970, 1975, 1980, 1985,1990,1995,2000,2005,2010,2015,2018],
                             type : 'category'
@@ -107,31 +79,30 @@
                     }
                 },
                 // 그리드의 범위 지정
-                regions: [  
-                    {start:1979, end:1980, class:'foo'},
-                    {start:1980, end:1983, class:'foo1'}
-                ]
+                // regions: [  
+                //     {start:1979, end:1980, class:'foo'},
+                //     {start:1980, end:1983, class:'foo1'}
+                // ]
                 // 차트의 크기 설정
             });
             setTimeout(function () {
-            chart.resize({height:700, width:1800})
+            chart.resize({height:500, width:1600})
             }, 1000);
                 // 그리드 설정
             setTimeout(function () {
                 chart.xgrids([
-                        {value: 1973, text: '제1차 석유파동(1973)'}, 
-                        {value: 1980, text: '제2차 석유파동(1979~1980)'}, 
-                        {value: 1983, text: '유럽 경기침체(1980~1983)'}, 
-                        {value: 1985, text: '플라자 합의(1985)'}, 
-                        {value: 1994, text: '일본 버블경제 붕괴(1994)'},
-                        {value: 1997, text: 'IMF(1997)'},
-                        {value: 2007, text: '서브프라임 모기지 사태(2007)'},
-                        {value: 2011, text: '동일본 대지진(2011)'},
-                        {value: 2016, text: '브렉시트(2016)'},
-                        {value: 2018, text: '현재'}
-                        
+                    {value: 1973, class:'red_text' ,text: '제1차 석유파동(1973)'}, 
+                    {value: 1980, class:'red_text' ,text: '제2차 석유파동(1979~1980)'}, 
+                    {value: 1983, class:'red_text' ,text: '유럽 경기침체(1980~1983)'}, 
+                    {value: 1985, class:'red_text' ,text: '플라자 합의(1985)'}, 
+                    {value: 1994, class:'red_text' ,text: '일본 버블경제 붕괴(1994)'},
+                    {value: 1997, class:'red_text' ,text: 'IMF(1997)'},
+                    {value: 2007, class:'red_text' ,text: '서브프라임 모기지 사태(2007)'},
+                    {value: 2011, class:'red_text' ,text: '동일본 대지진(2011)'},
+                    {value: 2016, class:'red_text' ,text: '브렉시트(2016)'},
+                    {value: 2018, class:'black_text', text: '현재'}
                     ]);
-            }, 1000);
+            },0);
         })
         </script>        
     </body>

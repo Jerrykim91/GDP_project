@@ -40,7 +40,7 @@ def user_edit_pw(request):
             user_edit_pw.set_password(new_pw) # new_pw으로 암호 변경 
             user_edit_pw.save()
             # return redirect('/member/main')
-            return redirect('/service/search_detail')
+            return redirect('/service/search_main')
 
         return redirect('member/user_edit_pw')
 
@@ -135,7 +135,7 @@ def user_edit(request):
         user_check.save()
 
         # return redirect('/member/main')
-        return redirect('/service/search_detail')
+        return redirect('/service/search_main')
 
         
 
@@ -146,7 +146,7 @@ def sign_out(request):
         logout(request)
 
         # return redirect('/member/main')
-        return redirect('/service/search_detail')
+        return redirect('/service/search_main')
 
 
 
@@ -164,7 +164,7 @@ def user_mypage(request):
 #         return render( request,'member/user_main.html')
 
 error = '''
-<a href="/service/search_detail"  type="button"> 메인으로 </a></p>
+<a href="/service/search_main"  type="button"> 메인으로 </a></p>
 <h1>로그인 실패 다시 시도해주세요.</h1>
 <p><a href="/member/sign_up"  type="button"> 회원가입 </a>
 <a href="/member/sign_in" type="button"> 로그인 </a>
@@ -221,13 +221,13 @@ def sign_up(request):
             )
         user.save()
         # return redirect('/member/main')
-        return redirect('/service/search_detail')
+        return redirect('/service/search_main')
         
 
 # dummy for test 
 def main(request):
     if request.method == 'GET':
-        return render( request,'service/search_detail.html')
+        return render( request,'service/search_main.html')
 
 # # dummy for test 
 # def main(request):

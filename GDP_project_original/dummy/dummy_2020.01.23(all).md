@@ -9,7 +9,54 @@
     그런데 포문 이름이 같음 
 show = > 
 top
+```html
+<!DOCTYPE html>
+<html lang="en">
+<!-- head  -->
+{% include '../main/head.html' %}
 
+ <!-- 추가  -->
+<link href="/static/css/postcss.css" rel="stylesheet">
+
+<!-- nav.html -->
+{% include '../main/navbar.html' %}
+    <body class="align">
+
+    <div class="grid">
+        <form action="/member/sign_in"  method="post" class="form login">
+            {% csrf_token%}
+            <header class="login__header">
+                <h3 class="login__title">Login</h3>
+            </header>
+        
+            <div class="login__body">
+        
+                <div class="form__field">
+                <input type="text" placeholder="ID" name="username"  required>
+                </div>
+        
+                <div class="form__field">
+                <input type="password" placeholder="Password"  name="password" required>
+                </div>
+        
+            </div>
+        
+            <footer class="login__footer">
+                <input type="submit" value="Signin">
+                <p><span class="icon icon--info"></span><a href="/member/sign_up">Not a member?</a></p>
+                <!-- <input type="button" value="회원가입" href="/member/sign_up"> -->
+
+                
+                            <input type="hidden" name= next value="{{next}}"> 
+        
+                <!-- <p><span class="icon icon--info">?</span><a href="#">Forgot Password</a></p> -->
+            </footer>
+        
+        </form>
+        </div>>
+ </body>
+</html>
+```
 ```sql
 SET DEFINE OFF
 DELETE FROM SERVICE_GDPTABLE WHERE COUNTRYNAME IN('Not classified', 'World', 'OECD members', 'High income', 'Post-demographic dividend', 'North America', 'European Union', 'IDA & IBRD total', 'Low & middle income', 'Middle income', 'IBRD only', 'Euro area', 'Upper middle income', 'Late-demographic dividend', 'East Asia & Pacific', 'Early-demographic dividend', 'Latin America & Caribbean', 'East Asia & Pacific (excluding high income)', 'East Asia & Pacific (IDA & IBRD countries)', 'Latin America & the Caribbean (IDA & IBRD countries)', 'Latin America & Caribbean (excluding high income)', 'South Asia (IDA & IBRD)', 'South Asia', 'IDA total', 'Sub-Saharan Africa (IDA & IBRD countries)', 'Sub-Saharan Africa', 'Sub-Saharan Africa (excluding high income)', 'IDA only', 'Heavily indebted poor countries (HIPC)', 'IDA blend', 'Pre-demographic dividend', 'Middle East & North Africa (excluding high income)', 'Middle East & North Africa (IDA & IBRD countries)', 'Europe & Central Asia', 'Lower middle income', 'Europe & Central Asia (IDA & IBRD countries)', 'Middle East & North Africa', 'Europe & Central Asia (excluding high income)', 'Arab World',  'Central Europe and the Baltics', 'Least developed countries: UN classification',  'Fragile and conflict affected situations', 'Low income', 'Small states', 'Other small states')

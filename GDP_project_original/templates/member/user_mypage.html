@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- head.html -->
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>sigh_in</title>
-</head>
+<!-- head  -->
+{% include '../main/head.html' %}
 
 <body>
+<!-- nav.html -->
+{% include '../main/navbar.html' %}
+
     <div class="container-md pt-5">
         {% csrf_token%}
         <!-- {% if request.user.is_authenticated %} -->

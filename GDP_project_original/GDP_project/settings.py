@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
 
     'member',
-    # test
+    'board',
     'service',
     'django.contrib.admin',
     'django.contrib.auth',

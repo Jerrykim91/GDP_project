@@ -1,24 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>sign_in</title>
-</head>
+    {% include '../main/head.html' %}
 
-<body>
 
-    <!-- {% if not request.user.is_authenticated %}
-        <p>
-            There's something wrong with what you entered!
-        </p>
-    {% else %}
-
-    {% endif %} -->
+<body class="container-fluid" >
+    {% include '../main/navbar.html' %}
 
     <div class="container-md pt-5">
-        <a href="/service/search_detail"  type="button"> 메인으로 </a>
+        <a href="/service/search_main"  type="button"> 메인으로 </a>
         <a href="/member/sign_up" class="btn btn-dark" > 회원가입 </a> 
         <div class="pt-3">
             <form action="/member/sign_in" method="post">
@@ -41,3 +30,20 @@
 
 
 
+<div class="containerr-md pt-5" >
+    <form class="form-signin" action="/member/sign_in" method="post" >
+        <h1>Sign In Page</h1>
+  
+        <label for="text" class="sr-only">ID</label>
+        <input type="text" name="id" class="form-control" placeholder="ID" />
+  
+        <label for="password" class="sr-only">PW</label>
+        <input type="password" name="pw" class="form-control" placeholder="PW"/>
+  
+        <button class="btn btn-lg btn-dark btn-block" type="submit">Sign in</button>
+  
+        <div style="margin-top:10px;">
+        <a href="/member/sign_up" class="btn btn-lg btn-dark btn-block" role="button">Sign Up</a>
+        <p class="mt-3 mb-3 text-muted">&copy; 2017-2019</p></div style="margin-top:10px;"> 
+    </form>   
+  <div>  
