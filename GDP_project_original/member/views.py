@@ -25,7 +25,7 @@ User = get_user_model()
 
 
 
-
+# user_edit_pw 
 def user_edit_pw(request): 
     if request.method =='GET':
         if not request.user.is_authenticated:
@@ -50,9 +50,10 @@ def user_edit_pw(request):
         return redirect('member/user_edit_pw')
 
 
+
 # @login_required
 # @csrf_exempt
-# # user_edit_check - 정보 수정(원본)
+# # user_edit_check - 정보 수정(수정전 - 원본)
 # def user_edit_check(request):
 #     if request.method == 'GET': 
 #         # if not request.user.is_authenticated:
@@ -143,7 +144,6 @@ def user_edit(request):
 
         
 
-
 @login_required
 # sign_out - 로그아웃
 def sign_out(request):
@@ -152,6 +152,7 @@ def sign_out(request):
 
         # return redirect('/member/main')
         return redirect('/service/search_detail')
+
 
 
 @login_required

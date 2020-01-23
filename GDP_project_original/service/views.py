@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 # 세션
 from django.contrib.auth.decorators import login_required
-
 # DB
 from django.db import connection
 from django.db.models import Sum,Min,Max,Count,Avg
@@ -15,6 +14,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 # 모델 호출 
 from .models import GDPTable
+from .models import PopulationTable
 #
 import urllib.request
 # 쿼리
@@ -33,11 +33,11 @@ cursor = connection.cursor()
 # Create your views here.
 
 
-# search_country_graph_pop
+# search_country_graph_pop -  나라의 1인당 GDP 구하기
 @csrf_exempt
 def search_country_graph_pop(request):
     if request.method == 'GET':
-        ### 나라의 1인당 GDP 구하기
+        request.session['prev'] = request.get_full_path() 
 
         ## 클릭한 나라의 인구 값 출력
         CountryName = request.GET["CountryName_pop"]                                                  
@@ -55,12 +55,13 @@ def search_country_graph_pop(request):
         sql = "SELECT * FROM SERVICE_GDPTABLE WHERE COUNTRYNAME =%s"
         cursor.execute(sql, [data.CountryName])
         gdp1 = cursor.fetchone()
-
+        print(gdp1)
         Country_gdp = list(gdp1)[2:]
         #Country_pop = 해당 나라 인구/Country_gdp = 해당 나라 GDP
-
+        # print(Country_gdp,Country_pop)
         ## GDP/인구 값 출력
-        capita=[]
+        capita=[Country_gdp,Country_pop]
+
         for i in range (0,60,1):    # 0의 값으로 나누면 에러가 나니까 예외처리를 한다
             try:
                 avg=Country_gdp[i]/Country_pop[i]
@@ -97,6 +98,7 @@ def search_country_graph_pop(request):
 
         return render(request,'service/search_country_graph_pop.html',{'one':data,'capita':capita,'kor_capita':kor_capita})
 
+
 # plot_font - 그래프 폰트함수
 def plot_font():
     font_name = font_manager\
@@ -105,14 +107,18 @@ def plot_font():
     rc('font',family=font_name)
 
 
+
 # @login_required
 @csrf_exempt #  뷰어 
-# search_detail - 검색하는 창  
+# search_detail - 검색하는 창
 def search_detail(request) :
     if request.method == 'GET' :
-        request.session['prev'] = request.path
+        # 경로 저장용 세션 
+        request.session['prev'] = request.get_full_path() 
         print(request.session['prev'])
-        return render(request, 'service/search_detail.html')
+
+        data = list(GDPTable.object.all().values("CountryName"))
+        return render(request, 'service/search_detail.html', {'list':data , 'year':range(1960,2020,1), 'how_many':range(1,31,1)})
 
 
 #@login_required
@@ -120,8 +126,10 @@ def search_detail(request) :
 # search_show - 검색 결과 출력 창 
 def search_show(request) :
     if request.method == 'GET' :
-        request.session['prev'] = request.path
+        # 경로 저장용 세션 
+        request.session['prev'] = request.get_full_path() 
         print(request.session['prev'])
+
         key =request.session['country']
         if key  : 
             # 데이터 가져오기 
@@ -173,7 +181,7 @@ def search_show(request) :
 # sort_by_year  
 def sort_by_year(request) :
     if request.method == 'GET' : 
-        request.session['prev'] = request.path
+        request.session['prev'] = request.get_full_path() 
         tmp_year = request.session['year']
         how = int(request.session['how_many'])
         year     = "GDP_" + str(tmp_year)
@@ -236,6 +244,7 @@ def search_country(request):
 #con = COUNTRYNAME.replace(" ","+")
 #real_path = PATH + str(con)
 
+
 # @login_required
 # search_country_graph - 나라 클릭하면 연도 그래프
 def search_country_graph(request):
@@ -278,8 +287,6 @@ def search_country_graph(request):
         real_korea=list(korea[2:])
         print('@@@@@@@@@',real_korea, type(real_korea))
         
-
-
 
         # json 작업 
         dict1=dict()

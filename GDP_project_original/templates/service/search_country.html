@@ -4,30 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-Good
+    <title>search_country</title>
 
-    <input type='text' name="country" />
-    <input type='submit' value='그래프 보기' />
+<!-- top script  -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+</head>
+
+<body>
     {% autoescape off %}
-    <form action='/service/search_country_graph' method='GET'>
-        {% for one in list %}
-            <table>
-                <tr>
-                <input type="submit" value="{{one.CountryName}}" name = "CountryName" />
-            <!-- <a href="/service/search_country_graph?name={{one.CountryName}}">{{ one.CountryName }}</a> -->
-                </tr>
-            </table>
-        {% endfor %}
+    <input type='button' value = '뒤로가기' onclick = 'history.back();'/>
+
+        <form action='/service/search_country_graph' method='GET'>
+            <label>
+                <select class='form-control'  name='CountryName'>
+                    <option value='' selected>-- 선택 --</option>
+                    
+                    {% for one in list %}
+                        <option value='{{one.CountryName}}'>{{one.CountryName}}</option>
+                    {% endfor %}
+                </select>
+            </label>
+            <input type='submit' value = '그래프 보기'/>  
+        </form>
         
     {% endautoescape %}
     
-            <!--{% autoescape off %}
-            {{df_table}}
-            {% endautoescape %}-->
-        
-    </form>
 </body>
 </html>
+
+
+<!--{% autoescape off %}
+{{df_table}}
+{% endautoescape %}-->

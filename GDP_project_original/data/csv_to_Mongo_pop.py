@@ -8,7 +8,7 @@ db = conn.get_database("db1")
 coll = db.get_collection("population_table") 
 
 #csv 파일 읽기 ##주소 확인하세요 
-f = open('./data/GDP.csv', 'r', encoding="utf-8")
+f = open('./data/Population.csv', 'r', encoding="utf-8")
 rdr = csv.reader(f)
 # print(rdr)
 

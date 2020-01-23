@@ -12,7 +12,7 @@
 <body>
 <!-- nav.html -->
 
-<!-- 로그인 start -->
+<!-- login start -->
 <div class="container-md pt-5">
     {% if not request.user.is_authenticated %}
 
@@ -31,26 +31,64 @@
     <a href="/member/sign_out"> 로그아웃 </a></p>
     
     {% endif %}
+<!-- login end -->
 
-<!-- 로그인 end -->
 
-    <form action ="/service/search_show" method ="post">
-        <h4>나라명과 년도 검색하세요 </h4>
-        <td><input type ="text" name ="country_name"/></td>
-        <td><input type ="text" name ="year"/></td> 
-        <input type ="submit" value = "검색"/> 
-    </form>
-    <hr> <hr>
-    <form action ="/service/sort_by_year" method ="post">
-        <h4>년도 검색하세요 </h4>
-        <td><input type ="text" name ="year"/></td>    
-        <h4>몇 개년? </h4>
-        <td><input type ="text" name ="how_many"/></td> 
-        <input type ="submit" value = "Top Country 검색"/> 
-    </form>
-    <hr> <hr>
-    <h4> 나라별 GDP 상승세 </h4>
-    <a href="/service/search_country" class="form-control" style="margin-bottom: 5px;" > search_country</a>
-</div>
+<!-- code start -->
+<form action ="/service/search_show" method ="post">
+    <h4>나라명과 년도 검색하세요 </h4>
+        <select class='form-control'  name='country_name' id = 'country_name'>
+            <option value='' selected>-- 선택 --</option> 
+            {% for one in list %}
+                <option value='{{one.CountryName}}'>{{one.CountryName}}</option>
+            {% endfor %}
+        </select>
+        <select class='form-control'  name='year' id = 'year1'>
+            <option value='' selected>-- 선택 --</option> 
+            {% for tmp in year %}
+                <option value='{{tmp}}'>{{tmp}}</option>
+            {% endfor %}
+        </select>
+        <input type ="submit" value = "검색" id = 'search1' />
+</form>
+
+<hr> <hr>
+<form action ="/service/sort_by_year" method ="post">
+    <h4>년도 / 1위부터 나라 수 </h4>
+        <select class='form-control'  name='year' id = 'year2'>
+            <option value='' selected>-- 선택 --</option> 
+            {% for tmp in year %}
+                <option value='{{tmp}}'>{{tmp}}</option>
+            {% endfor %}
+        </select>  
+        <select class='form-control'  name='how_many' id = 'how_many'>
+            <option value='' selected>-- 선택 --</option> 
+            {% for tmp1 in how_many %}
+                <option value='{{tmp1}}'>{{tmp1}}</option>
+            {% endfor %}
+        </select>
+        <input type ="submit" value = "Top Country 검색" id = 'search2'/> 
+</form>
+<hr> <hr>
+<h4> 나라별 GDP 상승세 </h4>
+<a href="/service/search_country" class="form-control" style="margin-bottom: 5px;" > search_country</a>  
+
+
+    <script>
+
+        $("form").submit(function(){
+            if ($('#country_name').val() == "" || $('#year1').val() == "" ){
+                alert('똑바로 해1')
+                $("#country_name").focus();
+                return false;
+            }   else {
+                    $('#search1').click(function(){
+                        $('#form').attr('action', '/service/search_show')
+                    })
+
+                }
+        })  
+
+    </script>
 </body>
 </html>
