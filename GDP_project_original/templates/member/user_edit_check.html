@@ -1,36 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- head.html -->
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>user_edit_check</title>
-</head>
+    {% include '../main/head.html' %}
 
-<body>
-    <div class="container-md pt-5">
-        <div class="pt-3">
-            <form action="/member/user_edit_check" method="post">
-            {% csrf_token%}
+{% comment %} 변경 01.24 {% endcomment %}
+<body class="bg-light">
+    <div class="container" style="width: 100%">
+        {% include '../main/navbar.html' %}
 
-            {% if Check_Method %}
-                비밀번호를 입력하세요
-            {% else %}
-                올바른 비밀번호를 입력해주세요
-            {% endif %} 
+        <div class="container-md pt-5"  style="width: 30%">
+            <hr>
+            <form class="form-signin" action="/member/user_edit_check" method="post" >
 
-            <p>
-                아이디   : <input type="text" name="username" value="{{user_check.username}}"readonly/>
-                패스워드 : <input type="password" name="password"/>
-            </p>
+                {% csrf_token%}
 
-            <p><input type="submit" class="bn btn-dark" href="/member/user_edit_pw" value="이동">
-            <input type="button" value="뒤로가기" onclick="history.back();" /></p>
-            <input type="hidden" name= next value="{{next}}"> 
-            </form> 
+                <div class="py-0 text-center">
+                    <h2>Check Password</h2>
+                        {% if Check_Method %}
+                            비밀번호를 입력하세요
+                        {% else %}
+                            올바른 비밀번호를 입력해주세요
+                        {% endif %} 
 
-        </div> 
+                </div>
+
+                    <hr>
+                <div class="mb-2">
+                    <label for="text" class="sr-only">ID</label>
+                    <input type="text" name="username" class="form-control" placeholder="ID" value="{{user_check.username}}"readonly />
+                </div>
+
+                <div class="mb-2">
+                    <label for="password" class="sr-only">PW</label>
+                    <input type="password" name="password" class="form-control" placeholder="PW"/>
+                </div>
+                    <hr>
+                <button class="btn btn-lg btn-dark btn-block" href="/member/user_edit_pw" type="submit">Next</button>
+            
+                    <div style="margin-top:10px;">
+                        <button  onclick="history.back();"  class="btn btn-lg btn-dark btn-block">Back</button>
+                        <input type="hidden" name= next value="{{next}}"> 
+                    </div>
+            </form>  
+        </div>  
     </div>
 </body>
 </html>
