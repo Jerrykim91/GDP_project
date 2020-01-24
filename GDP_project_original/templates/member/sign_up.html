@@ -4,30 +4,82 @@
 {% include '../main/head.html' %}
  <!-- 추가  -->
 <!-- <link href="/static/css/postcss-1.css" rel="stylesheet"> -->
+{% comment %} log-변경 01.24 {% endcomment %}
 
-<body>
-    
-<div class="container-md">
-    <!-- nav.html -->
-    {% include '../main/navbar.html' %}
+ <body class="bg-light">
+    <div class="container" style="width: 80%">
+         {% include '../main/navbar.html' %}
+  <div class="py-0 text-center">
+    {% comment %} <img class="d-block mx-auto mb-4" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> {% endcomment %}
+    <h2>Sign Up</h2>
+    {% comment %} <p class="lead">Thank you for visiting our page.</p> {% endcomment %}
+  </div>
+<div class="container-md pt-0"  style="width: 50%">
+  <div class="row">
+    <div class="col-md order-md" >
+      <h4 class="mb-3">Personal Info</h4>
 
-    <div class="container-md pt-5">
-        <!-- <a href="/service/search_detail"  class="btn btn-dark" > 메인으로 </a> -->
+      <form class="needs-validation" action="/member/sign_up" method="post" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-2">
+            <label for="username">ID</label>
+            <input type="text" class="form-control" name="username" id="username" placeholder="ID" value="" required>
+            <div class="invalid-feedback">
+              Valid ID is required.
+            </div>
+          </div>
+          <div class="col-md-6 mb-2">
+            <label for="password">PW</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="PW" value="" required>
+            <div class="invalid-feedback">
+              Valid PW is required.
+            </div>
+            </div>
+        </div>
 
-        <form action="/member/sign_up" method="post">
-        {% csrf_token %}
-        <h1>회원가입</h1>
-        아이디   : <input type="text"     name="username" placeholder="8자이상"/><br/>
-        패스워드 : <input type="password" name="password" placeholder = "8자이상"/><br/>
-        이름     : <input type="name" name="name"       placeholder="홍길동"/><br/>
-        이메일   : <input type="text" name="email"      placeholder="test1234@gamil.com"/><br/>
-        <label for= "birth_date"> 생년월일 : </label>           
-        <input type="date" name="birth_date" value="{{user_check.birth_date}}" />
-    
-        <input type="submit" class="btn btn-dark" value="가입"/><br/>
-     </form>
+        <div class="mb-2">
+          <label for="name">Name</label>
+          <input type="name" class="form-control" name="name" id="name" placeholder="홍길동">
+          <div class="invalid-feedback">
+            Please check your name. It is required.
+          </div>
+        </div>
+
+        <div class="mb-2">
+          <label for="email">Email</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">@</span>
+            </div>
+            <input type="text" class="form-control" name="email" id="email" placeholder="you@example.com" required>
+            <div class="invalid-feedback" style="width: 100%;">
+              Your Email is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-2">
+          <label for="birth_date">BIRTH <span class="text-muted">(주민번호 앞6자리)</span></label>
+          <input type="text" class="form-control" name="birth_date" id="birth_date" placeholder="890801">
+          <div class="invalid-feedback">
+            Please check your Email. It is required.
+          </div>
+        </div>
+
+      
+        <hr class="mb-3">
+        <button class="btn btn-dark btn-lg btn-block" type="submit">Submit</button>
+    </form>
     </div>
+  </div>
+
+{% include '../main/footer.html' %}
 </div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+        <script src="/static/js/form-validation.js"></script>
 </body>
 </html>
+
+
 
