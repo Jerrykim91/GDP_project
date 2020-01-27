@@ -141,14 +141,19 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+# USE_TZ = True
+USE_TZ = False
 
+# When USE_TZ is False, this is the time zone in which Django will store all datetimes. 
+# When USE_TZ is True, this is the default time zone that Django will use to display 
+# datetimes in templates and to interpret datetimes entered in forms.
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/ㄴ

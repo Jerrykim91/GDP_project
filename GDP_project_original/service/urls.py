@@ -5,6 +5,8 @@ from django.urls import path
 from . import views 
 
 urlpatterns = [
+    
+    # GDP_graph
     path('search_main', views.search_main, name="search_main"),
     path('search_detail', views.search_detail, name="search_detail"),
     path('search_show', views.search_show, name="search_show"),

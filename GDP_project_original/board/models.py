@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class QnA(models.Model):
@@ -12,3 +13,37 @@ class QnA(models.Model):
    
     img     = models.BinaryField(null=True) # 바이너리 필드
     regdate = models.DateTimeField(auto_now_add=True) # 날짜는 알아서넣어진다.
+
+
+
+
+# ============================================================================================
+
+#  회원데이터베이스랑 연결해서 작업하는 코드
+# class Comment(models.Model):
+#     post = models.ForeignKey('board.Post', related_name='comments', on_delete = models.CASCADE)
+#     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+#     text = models.TextField()
+#     created_date = models.DateTimeField(default=timezone.now)
+
+#     def __str__(self):
+#         return self.text
+
+
+
+# 기본 코드 
+# class Comment(models.Model):
+#     objects = models.Manager()
+    
+#     post = models.ForeignKey('board.Post', on_delete=models.CASCADE, related_name='comments')
+#     author = models.CharField(max_length=200)
+#     text = models.TextField()
+#     created_date = models.DateTimeField(default=timezone.now)
+    # approved_comment = models.BooleanField(default=False)
+
+    # def approve(self):
+    #     self.approved_comment = True
+    #     self.save()
+
+    # def __str__(self):
+    #     return self.text
