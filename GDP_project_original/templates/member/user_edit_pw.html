@@ -1,26 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- head.html -->
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>sigh_in</title>
-</head>
+<!-- head  -->
+{% include '../main/head.html' %}
+ <!-- 추가  -->
+<!-- <link href="/static/css/postcss-1.css" rel="stylesheet"> -->
+{% comment %} log-변경 01.24 {% endcomment %}
 
-<body>
-    <div class="container-md pt-5">
-        <form action="/member/user_edit_pw" method="post">
+ <body class="bg-light">
+    <div class="container" style="width: 100%">
+         {% include '../main/navbar.html' %}
+  <div class="py-0 text-center">
+  <hr style="width:40%">
+  <h2>Change Password</h2>
+  <hr style="width:40%">
+  </div>
+
+    <div class="container-md pt-2">
+        <form class="needs-validation" action="/member/user_edit_pw" method="post" novalidate>
         {% csrf_token %}
-        <p> 아이디   : <input type="text" name="username" value="{{user_check.username}}" readonly /><br/></p>
-        <p> 기존암호  : <input type="password" name="pw"  /><br/> </p>
-        <p> 바꿀암호  : <input type="password" name="new_pw"  /><br/> </p>
-        <p> 재암호입력: <input type="password" name="new_pw"  /><br/> </p>
-
-        <p><input type="button" value="뒤로가기" onclick="history.back();" />
-            <input type="submit" class="bn btn-dark" value="변경"></p>
+        <div class="container-md pt-2"  style="width:40%">
+            <div class=" mb-2">
+                <label for="username">ID</label>
+                <input type="text" class="form-control" name="username" id="username" placeholder="ID" value="{{user_check.username}}" readonly>
+            </div>
+            <div class=" mb-2">
+                <label for="password">PW</label>
+                <input type="password" class="form-control" name="pw" id="pw" placeholder="PW"  >
+            </div>
+            <div class=" mb-2">
+                <label for="password">New PW</label>
+                <input type="password" class="form-control" name="new_pw" id="new_pw" placeholder="PW"  >
+            </div>
+            <div class=" mb-2">
+                <label for="password">New PW Check</label>
+                <input type="password" class="form-control" name="new_pw" id="new_pw" placeholder="PW"  >
+            </div>
+            <hr class=" mb-3">
+            <input  onclick="history.back();"  class="btn btn-lg btn-dark btn-block" value="Back"/>
+            <button class="btn btn-dark btn-lg btn-block" type="submit">Submit</button>
+            <hr>
+        </div>
         </form>
+        {% include '../main/footer.html' %}
     </div>
 </body>
 </html>
-

@@ -7,7 +7,7 @@
     <div class="container" style="width: 100%">
         {% include '../main/navbar.html' %}
 
-        <div class="container-md pt-5"  style="width: 30%">
+        <div class="container-md pt-5"  style="width: 40%">
             <hr>
             <form class="form-signin" action="/member/user_edit_check" method="post" >
 
@@ -37,11 +37,13 @@
                 <button class="btn btn-lg btn-dark btn-block" href="/member/user_edit_pw" type="submit">Next</button>
             
                     <div style="margin-top:10px;">
-                        <button  onclick="history.back();"  class="btn btn-lg btn-dark btn-block">Back</button>
+                        <input  onclick="history.back();"  class="btn btn-lg btn-dark btn-block" value="Back"/>
                         <input type="hidden" name= next value="{{next}}"> 
+                        <hr>
                     </div>
             </form>  
         </div>  
+        {% include '../main/footer.html' %}
     </div>
 </body>
 </html>

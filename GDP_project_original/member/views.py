@@ -13,6 +13,7 @@ from django.contrib.auth import logout as logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
+from data.error import *
 # 변수 선언
 User = get_user_model()
 
@@ -163,12 +164,12 @@ def user_mypage(request):
 #     if request.method == 'GET':
 #         return render( request,'member/user_main.html')
 
-error = '''
-<a href="/service/search_main"  type="button"> 메인으로 </a></p>
-<h1>로그인 실패 다시 시도해주세요.</h1>
-<p><a href="/member/sign_up"  type="button"> 회원가입 </a>
-<a href="/member/sign_in" type="button"> 로그인 </a>
-'''
+# error = '''
+# <a href="/service/search_main"  type="button"> 메인으로 </a></p>
+# <h1>로그인 실패 다시 시도해주세요.</h1>
+# <p><a href="/member/sign_up"  type="button"> 회원가입 </a>
+# <a href="/member/sign_in" type="button"> 로그인 </a>
+# '''
 
 
 # sign_in - 로그인

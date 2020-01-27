@@ -7,57 +7,58 @@
 {% comment %} log-변경 01.25 {% endcomment %}
 
 <body class="bg-light">
-    <div class="container" style="width: 100%">
+    <div class="container-md" style="width: 80%">
         {% include '../main/navbar.html' %}
         <div class="py-0 text-center">
+        <hr style="width: 40%">
             <h2>Change Personal Info</h2>
+        <hr style="width: 40%">
         </div>
 
     <form class="needs-validation" action="/member/user_edit" method="post" novalidate>
-        <div class="container" style="width: 50%">
-                <div class="mb-2">
-                    <label for="username">ID</label>
-                    <input type="text" class="form-control" name="username" id="username" placeholder="ID" value= "{{user_check.username}}"  readonly >
-                </div>
-                
-                <div class="mb-2">
-                    <label for="name">Name</label>
-                    <input type="name" class="form-control" name="name" id="name" placeholder="홍길동" value="{{user_check.name}}" required>
-                        <div class="invalid-feedback">
-                            Please check your name. It is required.
-                        </div>
-                </div>
-
-                <div class="mb-2">
-                    <label for="email">Email</label>
-                        <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">@</span>
-                                </div>
-                            <input type="text" class="form-control" name="email" id="email" placeholder="you@example.com"  value="{{user_check.email}}" required >
-                                <div class="invalid-feedback" style="width: 100%;">
-                                        Your Email is required.
-                                </div>
-                        </div>
-                </div>
-
-                <div class="mb-2">
-                    <label for="birth_date">BIRTH <span class="text-muted">(주민번호 앞6자리)</span></label>
-                    <input type="text" class="form-control" name="birth_date" id="birth_date" placeholder="890801" value="{{user_check.birth_date}}" required >
-                            <div class="invalid-feedback">
-                                Please check your Email. It is required.
-                            </div>
-                </div>
-
-                <hr class="mb-3">
-                <button class="btn btn-dark btn-md btn-block" type="submit">Submit</button>
-                <input type="button" class="btn btn-dark btn-md btn-block" value="뒤로가기" onclick="history.back();" />
+        <div class="container" style="width: 40%">
+            <div class="mb-1">
+                <label for="username">ID</label>
+                <input type="text" class="form-control" name="username" id="username" placeholder="ID" value= "{{user_check.username}}"  readonly >
             </div>
-        </form>
-    
+            
+            <div class="mb-1">
+                <label for="name">Name</label>
+                <input type="name" class="form-control" name="name" id="name" placeholder="홍길동" value="{{user_check.name}}" required>
+                    <div class="invalid-feedback">
+                        Please check your name. It is required.
+                    </div>
+            </div>
 
+            <div class="mb-1">
+                <label for="email">Email</label>
+                    <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">@</span>
+                            </div>
+                        <input type="text" class="form-control" name="email" id="email" placeholder="you@example.com"  value="{{user_check.email}}" required >
+                            <div class="invalid-feedback" style="width: 100%;">
+                                    Your Email is required.
+                            </div>
+                    </div>
+            </div>
 
+            <div class="mb-1">
+                <label for="birth_date">BIRTH <span class="text-muted">(주민번호 앞6자리)</span></label>
+                <input type="text" class="form-control" name="birth_date" id="birth_date" placeholder="890801" value="{{user_check.birth_date}}" required >
+                        <div class="invalid-feedback">
+                            Please check your Email. It is required.
+                        </div>
+            </div>
+
+            <hr class="my-2">
+            <button class="btn btn-dark btn-lg btn-block" type="submit">Submit</button>
+            <input type="button" class="btn btn-dark btn-lg btn-block" value="뒤로가기" onclick="history.back();" />
+            <hr class="my-2" style="width: 100%">
+        </div>
+    </form>
     {% include '../main/footer.html' %}
+</div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
             <script src="/static/js/form-validation.js"></script>

@@ -59,13 +59,13 @@
           <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link active" href="/service/search_main">Home</a>
             {% if not request.user.is_authenticated %}
-            <a class="nav-link" href="/member/sign_in">SIGNIN</a>
-            <a class="nav-link" href="/member/sign_up">SIGNUP</a>
+            <a class="nav-link" href="/member/sign_in">Sign In</a>
+            <a class="nav-link" href="/member/sign_up">Sign Up</a>
             <a class="nav-link" href="/board/board_qna"> Q & A </a>
             {% else %}
             <a class="nav-link" href="/board/board_qna"> Q & A </a>
-            <a class="nav-link" href="/member/user_mypage">MYPAGE</a>
-            <a class="nav-link" href="/member/sign_out"> SIGNOUT </a>
+            <a class="nav-link" href="/member/user_mypage">My Page</a>
+            <a class="nav-link" href="/member/sign_out"> Sign Out </a>
             {% endif %}
           </nav>
         </div>
