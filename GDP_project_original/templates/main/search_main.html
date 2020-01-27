@@ -61,7 +61,6 @@
             {% if not request.user.is_authenticated %}
             <a class="nav-link" href="/member/sign_in">Sign In</a>
             <a class="nav-link" href="/member/sign_up">Sign Up</a>
-            <a class="nav-link" href="/board/board_qna"> Q & A </a>
             {% else %}
             <a class="nav-link" href="/board/board_qna"> Q & A </a>
             <a class="nav-link" href="/member/user_mypage">My Page</a>
@@ -77,7 +76,7 @@
       </main>
   
       <!--첫 번째 input  나라 이름 -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border:1px solid #000000">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div style="width:242px;">
           <a class="navbar-brand">1. Country Name</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
@@ -105,7 +104,7 @@
 
 
       <!--두 번째 input  날짜 -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light"  style="border:1px solid #000000">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" >
         <div style="width:242px">
             <a class="navbar-brand">2. Year</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
@@ -133,7 +132,7 @@
       </nav>
 
       <!--세 번째 input 나라이름 & 날짜 -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light"  style="border:1px solid #000000">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" >
         <div style="width:242px;">
           <a class="navbar-brand">3. Country Name & Year</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">

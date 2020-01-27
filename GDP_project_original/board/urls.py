@@ -12,9 +12,6 @@ urlpatterns = [
     path('board_edit', views.board_edit),
     path('board_delete', views.board_delete),
 
-    # board - shareInfo
-    path('board_shareinfo', views.board_shareinfo),
-
 
 ]
 

@@ -17,6 +17,8 @@ urlpatterns = [
     path('user_edit', views.user_edit),
     path('user_edit_check', views.user_edit_check),
     path('user_edit_pw', views.user_edit_pw),
+    path('user_delete', views.user_delete),
+    
 
 ]
 

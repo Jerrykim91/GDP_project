@@ -12,8 +12,9 @@ from django.contrib.auth import logout as logout
 
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-
+from .models import LIST
 from data.error import *
+
 # 변수 선언
 User = get_user_model()
 
@@ -197,6 +198,7 @@ def sign_in(request):
         else:
             # 실패_ 에러 메시지 전송  {'error':"username or password is incorrect!"}
             return HttpResponse(error)
+            
 
 
 
@@ -226,11 +228,20 @@ def sign_up(request):
         
 
 # dummy for test 
-def main(request):
-    if request.method == 'GET':
-        return render( request,'service/search_main.html')
-
-# # dummy for test 
 # def main(request):
 #     if request.method == 'GET':
-#         return render( request,'member/main.html')
+#         return render( request,'service/search_main.html')
+
+# # dummy for test 
+def main(request):
+    if request.method == 'GET':
+        return render( request,'member/main.html')
+
+@csrf_exempt
+def user_delete(request):
+    if request.method == "GET":
+        rows = LIST.objects.all()
+        rows.delete()
+        print(rows)
+
+        return redirect('/service/search_main')
