@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.6">
+    <title>GDP Search</title>
+    {% include '../main/head.html' %}
+    
+</head>
+<!-- nav bar -->
+<body class="text-center">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        {% include '../main/navbar_service.html' %}
+
+        
+    <div class="container" style="top:100px; height:100px;  margin-bottom:4cm ;">
+        <img src = "\static\img\GDP_logo.png" style = "height:200px; width:200px; border-radius: 30px;" />
+    </div>
+
+    <main role="main" class="inner cover">
+        <h1 class="cover-heading">GDP</h1>
+        <p class="lead">You can find here whatever you want :)</p>
+    </main>
+
+  
+    <!--첫 번째 input  나라 이름 -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border:1px solid #000000">
+        <div style="width:242px;">
+            <a class="navbar-brand">1. Country Name</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+
+        <div style="width:400px;">
+            <div class="collapse navbar-collapse" id="navbarsExample02">
+            <ul class="navbar-nav mr-auto"></ul>
+                <form class="form-inline my-2 my-md-0" action='/service/search_country_graph' method='GET' id='form3'>
+                    <label>
+                        <select class='form-control'  style = "width:300px" name='CountryName' id='CountryName3' >
+                        <option value='' selected>-- 선택 --</option>
+                        {% for one in list %}
+                            <option value='{{one.CountryName}}'>{{one.CountryName}}</option>
+                        {% endfor %}
+                        </select>
+                    </label>
+                    <button type="submit" class="btn btn-info" id='search3'>Search</button>
+                </form>
+            </div>
+        </div>
+      </nav>
+
+
+    <!--두 번째 input  날짜 -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"  style="border:1px solid #000000">
+        <div style="width:242px">
+            <a class="navbar-brand">2. Year</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+
+        <div style="width:400px;border:1px"> 
+            <div class="collapse navbar-collapse" id="navbarsExample02">
+                <ul class="navbar-nav mr-auto"></ul>
+                <form class="form-inline my-2 my-md-0" action = "/service/sort_by_year" method ="post" ID="form2">
+                    <label>
+                    <select class='form-control'  style = "width:300px" name='year' id='year2' >
+                        <option value='' selected>-- 선택 --</option>
+                        {% for one in year %}
+                        <option value='{{one}}'>{{one}}</option>
+                        {% endfor %}
+                    </select>
+                    </label>
+                    <label>
+                    <select class='form-control'  style = "width:300px" name='how_many' id='how_many' >
+                        <option value='' selected>-- 선택 --</option>
+                        {% for one in how_many %}
+                        <option value='{{one}}'>{{one}}</option>
+                        {% endfor %}
+                    </select>
+                    </label>
+                    <button type="submit" class="btn btn-info" id='search2'>Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!--세 번째 input 나라이름 & 날짜 -->
+     <nav class="navbar navbar-expand-lg navbar-light bg-light"  style="border:1px solid #000000">
+        <div style="width:242px;">
+            <a class="navbar-brand">3. Country Name & Year</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        
+        <div style="width:400px;">
+            <div class="collapse navbar-collapse" id="navbarsExample02">
+            <ul class="navbar-nav mr-auto"></ul>
+                <form class="form-inline my-2 my-md-0" action = "/service/search_show" method="post" ID="form1">
+                <label>
+                    <select class='form-control'  style = "width:300px" name='country_name' id="country_name" >
+                    <option value='' selected>-- 선택 --</option>
+                    {% for one in list %}
+                        <option value='{{one.CountryName}}'>{{one.CountryName}}</option>
+                    {% endfor %}
+                    </select>
+                </label>  
+                
+                <select class='form-control'  style = "width:300px" name='year' id="year1" >
+                    <option value='' selected>-- 선택 --</option>
+                    {% for one in year %}
+                    <option value='{{one}}'>{{one}}</option>
+                    {% endfor %}
+                </select>
+                <button class="btn btn-info" type="submit" id = "search1" >Search</button>
+                </form>        
+          </div>
+        </div>
+      </nav>
+        
+
+        
+
+  <footer class="mastfoot mt-auto">
+  </footer>
+</nav>
+<!-- script 확인 필요 -->
+    <script>
+      
+      $("#search3").click(function(){
+            if ($('#CountryName').val() == "" || $('#CountryName3').val() == "" ){
+                alert('정확한 값을 입력해주세요 = 나라이름 선택 ')
+                $("#CountryName").focus();
+                return false;
+            }   
+            else {
+                
+                   $('#form1').submit()
+            }
+        })  
+
+      $("#search1").click(function(){
+          if ($('#country_name').val() == "" || $('#year1').val() == "" ){
+              alert('정확한 값을 입력해주세요 = 나라명과 연도 ')
+              $("#country_name").focus();
+              return false;
+          }   
+          else {
+              
+                $('#form1').submit()
+          }
+      })  
+
+      $("#search2").click(function(){
+          if ($('#how_many').val() == "" || $('#year2').val() == "" ){
+              alert('정확한 값을 입력해주세요 = 년도와 1위 나라수 ')
+              $("#how_many").focus();
+              return false;
+          }   
+          else {
+                $('#form2').submit()
+
+          }
+      })  
+    </script>
+
+</body>
+</html>

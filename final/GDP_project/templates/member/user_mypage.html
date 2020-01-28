@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- head  -->
+{% include '../main/head.html' %}
+
+
+
+{% comment %} 변경 01.25 {% endcomment %}
+
+<body class="bg-light">
+
+    <div class="container-md " style="width: 100%">
+    <!-- nav.html -->
+        {% include '../main/navbar.html' %}
+
+        <div class="container-md pt-2" style="width: 40%" >
+        <hr>
+        {% csrf_token%}
+        {% if request.user.is_authenticated %}
+        <center>
+        <h2>반갑습니다.</h2>
+        <h3> {{request.user.name}} 님</h3>
+        {% endif %}
+        <hr >
+        <h3> Personal Info </h3>
+        <label for="username" > ID </label>
+        {{request.user.username}} <br/>
+        <label for="name" > Name </label>
+        {{request.user.name}} <br/>
+        <label for="email"> Email </label>
+        {{request.user.email}} <br/>
+        </center>
+        <hr >
+    </div>
+        <div class="container-md pt-2" style="width: 40%" >
+            <a href="/member/user_edit"  class="btn btn-lg btn-info btn-block"> Edit </a>
+            <a href="/member/user_edit_check"  class="btn btn-lg btn-info btn-block"> Edit Password </a>
+            <a href="/member/sign_out"  class="btn btn-lg btn-info btn-block" > Sign Out </a>
+
+        </div>
+        <hr style="width: 40%">
+        
+        
+    </div>
+</body>
+</html>
+
