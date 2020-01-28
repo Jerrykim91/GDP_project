@@ -23,10 +23,11 @@ User = get_user_model()
 
 
 # user_edit_pw 
+@login_required
 def user_edit_pw(request): 
     if request.method =='GET':
-        if not request.user.is_authenticated:
-            return redirect(request, 'user_edit_pw')
+        # if not request.user.is_authenticated:
+        #     return redirect(request, 'user_edit_pw')
 
         user_check = User.objects.get( username = request.user )    
         return render(request,'member/user_edit_pw.html',{'user_check':user_check})
