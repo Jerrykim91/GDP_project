@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
 
     'member',
-    # test
+    'board',
     'service',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -141,14 +141,19 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+# USE_TZ = True
+USE_TZ = False
 
+# When USE_TZ is False, this is the time zone in which Django will store all datetimes. 
+# When USE_TZ is True, this is the default time zone that Django will use to display 
+# datetimes in templates and to interpret datetimes entered in forms.
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/ㄴ
@@ -159,4 +164,6 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # 만든 모델을 명시
 AUTH_USER_MODEL="member.LIST"
 # 인증 확인 실패시 리다이렉트할 경로
-LOGIN_URL = '/sign_in/'
+#LOGIN_URL = '/sign_in/'
+# 브라우저를 종료하면 세션이 종료
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
