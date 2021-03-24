@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>board_edit</title>
+    {% include '../main/board_head.html' %}
+    
+
+</head>
+<body>
+
+    <!--페이지 제목 시작-->
+    <br/><br/><br/><br/><br/><br/>
+    <h1 class = 'display-1 text-center mb-4'><span class = 'badge badge-dark'>글 수 정</span></h1>    
+    <br/><br/><br/>    
+    <!--페이지 제목 끝-->
+
+    <form action = '/board/board_edit' method = 'POST' enctype='multipart/form-data'>
+    <div class = 'container'>
+        <div class = 'row'>
+            <div class = 'col'>
+                <input type='hidden' name='menu' value='2'/>
+                <table class = 'table table-bordered table-hover'>
+                    <tr>
+                        <th class = 'table-dark text-center align-middle'><h4>게시물 번호</h4></th>
+                        <th><input type='text' style='width:800px; border:0px; font-size:13px;' value = '{{row.no}}' name = 'no' readonly/></th>      
+                    </tr>
+                    <tr>
+                        <th class = 'table-dark text-center align-middle'><h4>제목</h4></th>
+                        <th><input type='text' style='width:800px; border:0px; font-size:13px;' name='title' value = '{{row.title}}'/></th>      
+                    </tr>
+                    <tr>
+                        <th class = 'table-dark text-center align-middle'><h4>내용</h4></th>
+                        <th><textarea name='content' value = '{{row.content}}' id = 'summernote'><h4>{{row.content}}</h4></textarea></th>      
+                    </tr>
+                    <tr>
+                        <th class = 'table-dark text-center align-middle'><h4>작성자 이메일</h4></th>
+                        <th><input type='text' style='width:800px; border:0px; font-size:13px;' value = '{{row.writer_email}}' name = 'writer_email' readonly /></th>      
+                    </tr>
+                    <tr>
+                        <th class = 'table-dark text-center align-middle'><h4>이미지</h4></th>
+                        <th>
+                            <img id="img" src = 'data:;base64,{{img}}' style='width:50%'/>
+                            <input type='file' id="file" name='img' style='width: 800px; border:0px;' src = 'data:;base64,{{img}}' />
+                        </th>      
+                    </tr>
+                    <tr>
+                        <th class = 'table-dark text-center align-middle'><h4>작성날짜</h4></th>
+                        <th><input type='text' style='width:800px; border:0px; font-size:13px;' value = '{{row.regdate}}' name = 'regdate' readonly /></th>      
+                    </tr>
+                    
+                    </tr>
+                </table>
+                <a href="/board/board_qna" class="btn btn-info" ><h4>목록으로</h4></a>
+                <button type = 'submit', class="btn btn-info"><h4>수정완료</h4></button>
+            </div>
+        </div>    
+    </form>
+    
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#img').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $(document).ready(function(){
+            $("#file").change(function(){
+                readURL(this);
+            });
+        });
+    </script>
+
+    <script>
+        $(function(){
+            $('#summernote').summernote({
+                placeholder: '내용을 입력하세요',
+                tabsize : 2,
+                height: 200
+            })
+        })
+    </script>
+
+</body>
+</html>

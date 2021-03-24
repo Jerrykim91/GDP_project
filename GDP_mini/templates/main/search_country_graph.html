@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>search_country_graph</title>
+    {% include '../main/head.html' %}
+
+</head>
+<body class = 'text-center'>
+    <div class="container-fluid">
+        {% include '../main/navbar_service.html' %}
+        <form action='/service/search_country_graph_pop' method='GET'>
+            <table class = 'table justify-content-center'>
+                <tr>
+                    <td><button type="submit" class="btn btn-info" value="{{CountryName}}" name = "CountryName_pop">Search GDP per capita</button></td> 
+                </tr>
+                <tr>
+                    <td><a class="btn btn-info" href="https://en.wikipedia.org/wiki/{{country}}">{{country}} 정보 더보기 (LINK)</a> 
+                </tr>
+            </table>
+        </form>
+        <h3> GDP {{country}} </h3>
+        Capital : {{img_data.2}}</br>
+        <label style = "width:120px;" style = "height:100px;"><img src ="{{flag}}" /></label><br/>
+        <a href="https://en.wikipedia.org/wiki/{{country}}">{{country}} 정보 더보기 (LINK)</a> 
+
+        <div id="chart"></div>
+
+    <script>
+        $(function(){
+            //############################################################################################################
+            // views.py 에서 받은 변수를 script 변수로 가공
+            var year1 = eval('{{year1}}')
+            year1.unshift('year1')
+
+            var year2 = eval('{{year2}}')
+            year2.unshift('year2')
+            
+            
+
+            var gdp_country = eval('{{gdp_country}}')
+            gdp_country.unshift('{{CountryName}}')
+            
+
+            var gdp_korea = eval('{{gdp_korea}}')
+            gdp_korea.unshift('gdp_korea')
+            
+
+
+            
+            var chart = c3.generate({
+                bindto : '#chart',
+                data : {
+                    xs: {
+                        '{{CountryName}}' : 'year1',
+                        'gdp_korea' : 'year2',
+
+                    },  
+                   
+                    columns: [
+                        year1,
+                        year2,
+                        gdp_country,
+                        gdp_korea,
+                   
+                    ],
+                    type : 'line',
+                    colors: {
+                        '{{CountryName}}': '#0000ff',
+                        'gdp_korea' : '#ff0000'
+
+                    }
+
+                
+
+                },
+                
+                axis: {
+                    x: {
+                        height: 80,
+                        tick: {
+                            type: 'category',
+                            values: [1960, 1965, 1970, 1975, 1980, 1985,1990,1995,2000,2005,2010,2015,2018]
+                            
+                        }
+
+
+                    },
+    
+                    y: {
+                        label : 'GDP (Current USD)',
+                        tick : {
+                            format: d3.format('$,d')
+                        }    
+    
+                    }
+    
+                },
+                
+                size: {
+                    width: 1800,
+                    height: 600
+
+                },
+                
+             
+                
+
+            })
+
+            chart.xgrids([
+                {value: 1973, class:'red_text' ,text: '제1차 석유파동(1973)'}, 
+                {value: 1980, class:'red_text' ,text: '제2차 석유파동(1979~1980)'}, 
+                {value: 1983, class:'red_text' ,text: '유럽 경기침체(1980~1983)'}, 
+                {value: 1985, class:'red_text' ,text: '플라자 합의(1985)'}, 
+                {value: 1994, class:'red_text' ,text: '일본 버블경제 붕괴(1994)'},
+                {value: 1997, class:'red_text' ,text: 'IMF(1997)'},
+                {value: 2007, class:'red_text' ,text: '서브프라임 모기지 사태(2007)'},
+                {value: 2011, class:'red_text' ,text: '동일본 대지진(2011)'},
+                {value: 2016, class:'red_text' ,text: '브렉시트(2016)'},
+                {value: 2018, class:'black_text', text: '현재'}
+    
+            ])
+
+        })
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>board_wirte</title>
+    {% include '../main/board_head.html' %}
+    
+    
+</head>
+<body>
+    
+    <!--페이지 제목 시작-->
+    <br/><br/><br/><br/><br/><br/>
+    <h1 class = 'display-1 text-center mb-4'><span class = 'badge badge-dark'>글 쓰 기</span></h1>    
+    <br/><br/><br/>    
+    <!--페이지 제목 끝-->    
+   
+    <form action = '/board/board_write' method = 'POST' enctype='multipart/form-data'>
+    <div class = 'container'>
+        <div class = 'row'>
+            <div class = 'col'>
+                <table class = 'table table-bordered table-hover'>
+                    <tr>
+                        <th class = 'table-dark text-center align-middle'><h4>제목</h4></th>
+                        <th><input type='text' style='width:800px; border: 0px; ' name='title' /></th>      
+                    </tr>
+                    <tr>
+                        <th class = 'table-dark text-center align-middle'><h4>내용</h4></th>
+                        <th><textarea name='content' id = 'summernote'></textarea></th>      
+                    </tr>
+                    <tr>
+                        <th class = 'table-dark text-center align-middle'><h4>이미지</h4></th>
+                        <th><input type='file' class='form-control' name='img' style='width: 800px; border: 0px;' src = 'data:;base64,{{img}}' /></th>      
+                    </tr>
+                    <tr>
+                        <th class = 'table-dark text-center align-middle'><h4>작성자 이메일</h4></th> 
+                        <th><input type='text' style='width:800px; border: 0px;' name='writer_email' /></th>      
+                    </tr>
+                </table>
+                <a href="/board/board_qna" class="btn btn-info" ><h4>목록으로</h4></a>
+                <button type = 'submit' class="btn btn-info" ><h4>작성완료</h4></button>
+                
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        $(function(){
+            $('#summernote').summernote({
+                placeholder: '내용을 입력하세요',
+                tabsize : 2,
+                height: 200
+            })
+        })
+    </script>
+        
+
+    
+    
+    </form>
+</body>
+</html>
