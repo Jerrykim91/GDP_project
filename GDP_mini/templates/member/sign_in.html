@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include '../main/head.html' %}
+
+{% comment %} 변경 01.24 {% endcomment %}
+<body class="bg-light">
+    <div class="container" >
+        {% include '../main/navbar.html' %}
+
+        <div class="container-md pt-5" style="width: 100%">
+
+                <form class="form-signin" action="/member/sign_in" method="post" >
+                    <div class="py-0 text-center">
+                    <hr class="my-3" style="width: 40%">
+                    {% comment %} <br> {% endcomment %}
+                        <h2>Sign In</h2>
+                        {% comment %} <br> {% endcomment %}
+                    </div>
+                    <div class="container-md"  style="width: 40%">
+                        <hr>
+                        <div class="mb-2">
+                            <label for="text" class="sr-only">ID</label>
+                            <input type="text" name="username" class="form-control" placeholder="ID" />
+                        </div>
+                        <div class="mb-2">
+                            <label for="password" class="sr-only">PW</label>
+                            <input type="password" name="password" class="form-control" placeholder="PW"/>
+                        </div>
+                        <hr >
+                        <button class="btn btn-lg btn-dark btn-block" type="submit">Sign In</button>
+                
+                        <div style="margin-top:10px;">
+                            <a href="/member/sign_up" class="btn btn-lg btn-dark btn-block" role="button">Sign Up</a>
+                        </div>  
+                    </div>
+                </form>  
+            <hr  class="my-3" style="width: 40%">
+        </div> 
+        {% include '../main/footer.html' %}
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+

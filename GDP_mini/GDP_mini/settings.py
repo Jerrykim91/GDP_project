@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'member',
     'board',
     'service',
@@ -126,8 +125,27 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 
 # 만든 모델을 명시
-# AUTH_USER_MODEL="member.LIST"
+AUTH_USER_MODEL="member.LIST"
+
 # 인증 확인 실패시 리다이렉트할 경로
-# LOGIN_URL = '/sign_in/'
+LOGIN_URL = '/sign_in/'
 # 브라우저를 종료하면 세션이 종료
-# SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+
+
+""""
+# 에러 
+ERRORS:
+auth.User.groups: (fields.E304) Reverse accessor for 'User.groups' clashes with reverse accessor for 'LIST.groups'.
+        HINT: Add or change a related_name argument to the definition for 'User.groups' or 'LIST.groups'.
+auth.User.user_permissions: (fields.E304) Reverse accessor for 'User.user_permissions' clashes with reverse accessor for 'LIST.user_permissions'.
+        HINT: Add or change a related_name argument to the definition for 'User.user_permissions' or 'LIST.user_permissions'.
+member.LIST.groups: (fields.E304) Reverse accessor for 'LIST.groups' clashes with reverse accessor for 'User.groups'.
+        HINT: Add or change a related_name argument to the definition for 'LIST.groups' or 'User.groups'.
+member.LIST.user_permissions: (fields.E304) Reverse accessor for 'LIST.user_permissions' clashes with reverse accessor for 'User.user_permissions'.
+        HINT: Add or change a related_name argument to the definition for 'LIST.user_permissions' or 'User.user_permissions'.
+
+
+# AUTH_USER_MODEL = ‘user.Users’ # setting 작성
+"""

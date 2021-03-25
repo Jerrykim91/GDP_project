@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include '../main/head.html' %}
+
+{% comment %} 변경 01.24 {% endcomment %}
+<body class="bg-light">
+    <div class="container" style="width: 100%">
+        {% include '../main/navbar.html' %}
+
+        <div class="container-md pt-5"  style="width: 40%">
+            <hr>
+            <form class="form-signin" action="/member/user_edit_check" method="post" >
+
+                {% csrf_token%}
+
+                <div class="py-0 text-center">
+                    <h2>Check Password</h2>
+                        {% if Check_Method %}
+                            비밀번호를 입력하세요
+                        {% else %}
+                            올바른 비밀번호를 입력해주세요
+                        {% endif %} 
+
+                </div>
+
+                    <hr>
+                <div class="mb-2">
+                    <label for="text" class="sr-only">ID</label>
+                    <input type="text" name="username" class="form-control" placeholder="ID" value="{{user_check.username}}"readonly />
+                </div>
+
+                <div class="mb-2">
+                    <label for="password" class="sr-only">PW</label>
+                    <input type="password" name="password" class="form-control" placeholder="PW"/>
+                </div>
+                    <hr>
+                <button class="btn btn-lg btn-dark btn-block" href="/member/user_edit_pw" type="submit">Next</button>
+            
+                    <div style="margin-top:10px;">
+                        <input  onclick="history.back();"  class="btn btn-lg btn-dark btn-block" value="Back"/>
+                        <input type="hidden" name= next value="{{next}}"> 
+                        <hr>
+                    </div>
+            </form>  
+        </div>  
+        {% include '../main/footer.html' %}
+    </div>
+
+</body>
+</html>
